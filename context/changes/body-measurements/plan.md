@@ -436,10 +436,10 @@ V19 only adds a new table and a nullable column; no existing data is touched. Fl
 
 #### Automated
 
-- [x] 6.1 New e2e passes: `npm run test:e2e -- body-measurements.spec.ts`
-- [x] 6.2 Full e2e suite passes: `npm run test:e2e`
-- [x] 6.3 Backend suite passes: `./mvnw test`
+- [x] 6.1 New e2e passes: `npm run test:e2e -- body-measurements.spec.ts` — 9f209d6
+- [x] 6.2 Full e2e suite passes: `npm run test:e2e` — 9f209d6
+- [x] 6.3 Backend suite passes: `./mvnw test` — 9f209d6
 
 #### Manual
 
-- [x] 6.4 README, test plan and CLAUDE.md read correctly and link nothing stale
+- [x] 6.4 README, test plan and CLAUDE.md read correctly and link nothing stale — 9f209d6

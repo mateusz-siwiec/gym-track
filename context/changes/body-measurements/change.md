@@ -1,7 +1,7 @@
 ---
 change_id: body-measurements
 title: Body measurements tab
-status: implementing
+status: implemented
 created: 2026-11-25
 updated: 2026-11-25
 archived_at: null

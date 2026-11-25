@@ -307,29 +307,29 @@ None. No schema or API changes.
 
 #### Automated
 
-- [x] 2.1 Unit tests pass: `npm test`
-- [x] 2.2 Build passes: `npm run build`
-- [x] 2.3 Lint passes: `npm run lint`
-- [x] 2.4 Token guard passes: `npm run check:tokens`
-- [x] 2.5 Existing logged-stats e2e still passes: `npm run test:e2e -- muscle-group-stats.spec.ts`
+- [x] 2.1 Unit tests pass: `npm test` — 27d21f2
+- [x] 2.2 Build passes: `npm run build` — 27d21f2
+- [x] 2.3 Lint passes: `npm run lint` — 27d21f2
+- [x] 2.4 Token guard passes: `npm run check:tokens` — 27d21f2
+- [x] 2.5 Existing logged-stats e2e still passes: `npm run test:e2e -- muscle-group-stats.spec.ts` — 27d21f2
 
 #### Manual
 
-- [x] 2.6 `/muscle-groups` looks and behaves exactly as before in both languages (expand, checkbox, windows)
+- [x] 2.6 `/muscle-groups` looks and behaves exactly as before in both languages (expand, checkbox, windows) — 27d21f2
 
 ### Phase 3: Editor panel
 
 #### Automated
 
-- [ ] 3.1 Build and lint pass: `npm run build`, `npm run lint`
-- [ ] 3.2 Token guard passes: `npm run check:tokens`
-- [ ] 3.3 Unit tests pass: `npm test`
+- [x] 3.1 Build and lint pass: `npm run build`, `npm run lint`
+- [x] 3.2 Token guard passes: `npm run check:tokens`
+- [x] 3.3 Unit tests pass: `npm test`
 
 #### Manual
 
-- [ ] 3.4 Adding a bench press shows chest, plus front delts and triceps with the secondary checkbox ticked
-- [ ] 3.5 Changing sets from 3 to 5 updates the numbers immediately; clearing the field ignores that entry; removing an entry updates the panel
-- [ ] 3.6 Editing an existing plan shows its stats on load; works in en and pl; usable at phone width
+- [x] 3.4 Adding a bench press shows chest, plus front delts and triceps with the secondary checkbox ticked
+- [x] 3.5 Changing sets from 3 to 5 updates the numbers immediately; clearing the field ignores that entry; removing an entry updates the panel
+- [x] 3.6 Editing an existing plan shows its stats on load; works in en and pl; usable at phone width
 
 ### Phase 4: Plans list breakdown and combined view
 

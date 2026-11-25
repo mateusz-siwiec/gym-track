@@ -335,23 +335,23 @@ None. No schema or API changes.
 
 #### Automated
 
-- [x] 4.1 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
-- [x] 4.2 Unit tests pass: `npm test`
+- [x] 4.1 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens` — ed37f5c
+- [x] 4.2 Unit tests pass: `npm test` — ed37f5c
 
 #### Manual
 
-- [x] 4.3 Expanding a row shows that plan's breakdown; collapsing hides it; deleting an expanded or selected plan removes it cleanly
-- [x] 4.4 Ticking three plans shows the summed breakdown and the three names; unticking one updates it; the sum matches the three individual row breakdowns
-- [x] 4.5 Works with keyboard only, in en and pl, and at phone width
+- [x] 4.3 Expanding a row shows that plan's breakdown; collapsing hides it; deleting an expanded or selected plan removes it cleanly — ed37f5c
+- [x] 4.4 Ticking three plans shows the summed breakdown and the three names; unticking one updates it; the sum matches the three individual row breakdowns — ed37f5c
+- [x] 4.5 Works with keyboard only, in en and pl, and at phone width — ed37f5c
 
 ### Phase 5: E2E coverage and docs
 
 #### Automated
 
-- [ ] 5.1 New e2e passes: `npm run test:e2e -- plan-muscle-stats.spec.ts`
-- [ ] 5.2 Full e2e suite passes: `npm run test:e2e`
-- [ ] 5.3 Backend unaffected: `./mvnw test`
+- [x] 5.1 New e2e passes: `npm run test:e2e -- plan-muscle-stats.spec.ts`
+- [x] 5.2 Full e2e suite passes: `npm run test:e2e`
+- [x] 5.3 Backend unaffected: `./mvnw test`
 
 #### Manual
 
-- [ ] 5.4 README and test plan read correctly and link nothing stale
+- [x] 5.4 README and test plan read correctly and link nothing stale

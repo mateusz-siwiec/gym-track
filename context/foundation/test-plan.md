@@ -167,6 +167,16 @@ log cleanly, never crash a read endpoint, and rank and chart by their own metric
 | `WorkoutSchemaTest.zeroWeightIsAccepted`, `negativeOrOverThousandWeightIsRejected`, `durationSetWithoutRepsIsAccepted`, `exactlyOneOfRepsAndDurationIsRequired`, `outOfRangeDurationIsRejected`, `exerciseMeasureIsRestrictedToRepsOrDuration`; `TrainingPlanSchemaTest.durationEntryWithoutRepsIsAccepted`, `exactlyOneOfRepsAndTargetDurationIsRequired`, `outOfRangeTargetDurationIsRejected` | Backend | The DB constraints behind weight 0, the reps-or-duration rule and the duration range |
 | `frontend/src/utils/workoutToPlan.test.ts` | Frontend unit | Saving a workout as a plan turns timed sets into seconds targets |
 
+### R14. A plan's muscle breakdown disagrees with how logged sets are counted
+
+**Impact:** medium. The plan editor, the plans list and the combined view count planned sets in the frontend (`planMuscleStats.ts`),
+mirroring the rules of `DashboardService.muscleGroupStats`; if the two drift apart, a plan promises a balance the logged workouts never show.
+
+| Test | Level | Covers |
+| --- | --- | --- |
+| `frontend/src/utils/planMuscleStats.test.ts` | Frontend unit | Primary sets count once under the exercise's primary group; secondary groups count in full; a parent counts once when two of its groups are secondary; a secondary equal to the primary and unknown groups are ignored |
+| `e2e/plan-muscle-stats.spec.ts` | E2E | The editor panel shows the parent rows and updates when the sets field changes; a plans-list row expands to the right counts; two ticked plans show the combined sums and both names, one ticked plan shows the hint; the secondary checkbox adds "(+n)"; at 390 px the checkbox, name and actions stay on one line; another user's plans never appear |
+
 ## Not covered by automated tests (known gaps)
 
 - **Logging timed sets through the browser beyond one plank flow.** The e2e specs cover a plank with and without weight; the exercise form's measure and weight-mode controls are exercised only through the edit-lock path, not on create.

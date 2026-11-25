@@ -456,6 +456,8 @@
     "WORKOUT_ENDED": "Ten trening został już zakończony.",
     "INVALID_DASHBOARD_WINDOW": "Nieobsługiwany zakres czasu.",
     "INVALID_WEEKLY_GOAL": "Cel tygodniowy musi być liczbą całkowitą od 1 do 14.",
+    "BODY_MEASUREMENT_NOT_FOUND": "Nie znaleziono wpisu pomiarów.",
+    "INVALID_TARGET_WEIGHT": "Waga docelowa musi być liczbą od 20 do 500 kg.",
     "INVALID_HISTORY_PAGE": "Nieprawidłowy numer strony.",
     "INVALID_HISTORY_SIZE": "Nieprawidłowy rozmiar strony.",
     "INVALID_HISTORY_FILTER": "Tych filtrów nie można łączyć.",

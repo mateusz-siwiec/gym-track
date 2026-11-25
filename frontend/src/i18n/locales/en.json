@@ -430,6 +430,8 @@
     "WORKOUT_ENDED": "This workout has already ended.",
     "INVALID_DASHBOARD_WINDOW": "Unsupported time range.",
     "INVALID_WEEKLY_GOAL": "The weekly goal must be a whole number from 1 to 14.",
+    "BODY_MEASUREMENT_NOT_FOUND": "Measurement entry not found.",
+    "INVALID_TARGET_WEIGHT": "The target weight must be a number from 20 to 500 kg.",
     "INVALID_HISTORY_PAGE": "Invalid page number.",
     "INVALID_HISTORY_SIZE": "Invalid page size.",
     "INVALID_HISTORY_FILTER": "These filters cannot be combined.",

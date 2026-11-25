@@ -375,24 +375,24 @@ V19 only adds a new table and a nullable column; no existing data is touched. Fl
 
 #### Automated
 
-- [x] 1.1 Migration applies and new backend tests pass: `./mvnw test -Dtest='BodyMeasurement*'`
-- [x] 1.2 Full backend suite passes: `./mvnw test`
+- [x] 1.1 Migration applies and new backend tests pass: `./mvnw test -Dtest='BodyMeasurement*'` — c2a31c0
+- [x] 1.2 Full backend suite passes: `./mvnw test` — c2a31c0
 
 #### Manual
 
-- [x] 1.3 Against the local backend, create, edit and delete an entry and set and clear a target weight, and confirm another user's entry id returns 404
+- [x] 1.3 Against the local backend, create, edit and delete an entry and set and clear a target weight, and confirm another user's entry id returns 404 — c2a31c0
 
 ### Phase 2: Generic info tooltip
 
 #### Automated
 
-- [ ] 2.1 Unit tests pass: `npm test`
-- [ ] 2.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
-- [ ] 2.3 Existing tooltip behaviour is unchanged: `npm run test:e2e -- technique-tooltip.spec.ts exercises-list.spec.ts muscle-map.spec.ts exercise-favorites.spec.ts`
+- [x] 2.1 Unit tests pass: `npm test`
+- [x] 2.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
+- [x] 2.3 Existing tooltip behaviour is unchanged: `npm run test:e2e -- technique-tooltip.spec.ts exercises-list.spec.ts muscle-map.spec.ts exercise-favorites.spec.ts`
 
 #### Manual
 
-- [ ] 2.4 Tooltips on `/exercises` and in the exercise form behave exactly as before (hover, keyboard focus, Escape, outside click, phone bottom sheet)
+- [x] 2.4 Tooltips on `/exercises` and in the exercise form behave exactly as before (hover, keyboard focus, Escape, outside click, phone bottom sheet)
 
 ### Phase 3: Frontend foundations
 

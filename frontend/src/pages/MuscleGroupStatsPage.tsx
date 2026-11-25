@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { getMuscleGroupStats } from '../api/client'
 import type { MuscleGroupStats, StatsWindow } from '../api/client'
-import { MUSCLE_PARENTS, muscleGroupLabel, muscleParentLabel } from '../utils/muscleGroups'
+import MuscleBreakdown from '../components/MuscleBreakdown'
+import { MUSCLE_PARENTS } from '../utils/muscleGroups'
 import type { MuscleParentKey } from '../utils/muscleGroups'
 import '../styles/page.css'
 import '../styles/dashboard.css'
@@ -29,7 +30,8 @@ export default function MuscleGroupStatsPage() {
   // Display only: the API always returns the secondary-muscle numbers, so the checkbox never reloads the page.
   const [includeSecondary, setIncludeSecondary] = useState(false)
   const [result, setResult] = useState<FetchResult | null>(null)
-  // Expanded parent rows; kept when the time window changes, not persisted across visits.
+  // Expanded parent rows; kept when the time window changes (the breakdown unmounts while reloading), not persisted
+  // across visits.
   const [expanded, setExpanded] = useState<ReadonlySet<MuscleParentKey>>(new Set())
 
   function toggle(key: MuscleParentKey) {
@@ -105,89 +107,16 @@ export default function MuscleGroupStatsPage() {
         failureSets: stats?.failureSets ?? 0,
       }
     }).sort((a, b) => b.sets - a.sets)
-    // One scale for both modes (primary + secondary), so ticking the box only adds to the bars and never resizes them.
-    const max = Math.max(...parents.map((parent) => parent.sets + parent.secondarySets))
-    const percent = (value: number, of: number) => `${of > 0 ? Math.min(100, (value / of) * 100) : 0}%`
-    const barLabel = (sets: number, secondarySets: number) =>
-      includeSecondary && secondarySets > 0
-        ? `${t('muscleStats.setsCount', { count: sets })}, ${t('muscleStats.secondaryCount', { count: secondarySets })}`
-        : t('muscleStats.setsCount', { count: sets })
-    const bar = (sets: number, secondarySets: number, of: number) => (
-      <span className="muscle-bar" role="img" aria-label={barLabel(sets, secondarySets)}>
-        <span
-          className="muscle-bar-secondary"
-          style={{ width: percent(includeSecondary ? sets + secondarySets : sets, of) }}
-        />
-        <span className="muscle-bar-fill" style={{ width: percent(sets, of) }} />
-      </span>
-    )
-    const count = (sets: number, secondarySets: number) => (
-      <span className="muscle-count">
-        {sets}
-        {includeSecondary && secondarySets > 0 && <span className="muscle-secondary-count"> (+{secondarySets})</span>}
-      </span>
-    )
     status = <p className="muscle-total">{t('muscleStats.total', { count: totalSets })}</p>
     body = (
       <>
-        <ul className="muscle-list">
-          {parents.map((parent) => {
-            const open = expanded.has(parent.key)
-            const listId = `muscle-children-${parent.key}`
-            // A muscle's primary + secondary sets never exceed its parent's, so child bars fit inside the parent's total.
-            const parentTotal = parent.sets + parent.secondarySets
-            return (
-              <li key={parent.key} className="muscle-parent" data-parent={parent.key}>
-                <div className="muscle-row">
-                  {parent.children.length > 1 ? (
-                    <button
-                      type="button"
-                      className="muscle-toggle"
-                      aria-expanded={open}
-                      aria-controls={listId}
-                      onClick={() => toggle(parent.key)}
-                    >
-                      <svg
-                        className="muscle-chevron"
-                        viewBox="0 0 12 12"
-                        width="12"
-                        height="12"
-                        aria-hidden="true"
-                        focusable="false"
-                      >
-                        <path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="2" />
-                      </svg>
-                      {muscleParentLabel(parent.key)}
-                    </button>
-                  ) : (
-                    <span className="muscle-name">{muscleParentLabel(parent.key)}</span>
-                  )}
-                  {bar(parent.sets, parent.secondarySets, max)}
-                  {count(parent.sets, parent.secondarySets)}
-                  {parent.failureSets > 0 && (
-                    <span className="muscle-failure">{t('muscleStats.failureCount', { count: parent.failureSets })}</span>
-                  )}
-                </div>
-                {parent.children.length > 1 && (
-                  <ul id={listId} className="muscle-children" hidden={!open}>
-                    {parent.children.map((child) => (
-                      <li key={child.group} className="muscle-row" data-group={child.group}>
-                        <span className="muscle-name">{muscleGroupLabel(child.group)}</span>
-                        {bar(child.sets, child.secondarySets, parentTotal)}
-                        {count(child.sets, child.secondarySets)}
-                        {child.failureSets > 0 && (
-                          <span className="muscle-failure">
-                            {t('muscleStats.failureCount', { count: child.failureSets })}
-                          </span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            )
-          })}
-        </ul>
+        <MuscleBreakdown
+          parents={parents}
+          includeSecondary={includeSecondary}
+          idPrefix="muscle-children"
+          expanded={expanded}
+          onToggle={toggle}
+        />
         <p className="page-subtext">{t(includeSecondary ? 'muscleStats.noteSecondary' : 'muscleStats.note')}</p>
       </>
     )

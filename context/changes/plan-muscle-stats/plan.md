@@ -295,27 +295,27 @@ None. No schema or API changes.
 
 #### Automated
 
-- [x] 1.1 Unit tests pass: `npm test` (from `frontend/`)
-- [x] 1.2 Type check and build pass: `npm run build`
-- [x] 1.3 Lint passes: `npm run lint`
+- [x] 1.1 Unit tests pass: `npm test` (from `frontend/`) — 98f05dd
+- [x] 1.2 Type check and build pass: `npm run build` — 98f05dd
+- [x] 1.3 Lint passes: `npm run lint` — 98f05dd
 
 #### Manual
 
-- [x] 1.4 Hand-check one realistic bench-press plan against what `/muscle-groups` shows after logging the same sets
+- [x] 1.4 Hand-check one realistic bench-press plan against what `/muscle-groups` shows after logging the same sets — 98f05dd
 
 ### Phase 2: Shared breakdown component
 
 #### Automated
 
-- [ ] 2.1 Unit tests pass: `npm test`
-- [ ] 2.2 Build passes: `npm run build`
-- [ ] 2.3 Lint passes: `npm run lint`
-- [ ] 2.4 Token guard passes: `npm run check:tokens`
-- [ ] 2.5 Existing logged-stats e2e still passes: `npm run test:e2e -- muscle-group-stats.spec.ts`
+- [x] 2.1 Unit tests pass: `npm test`
+- [x] 2.2 Build passes: `npm run build`
+- [x] 2.3 Lint passes: `npm run lint`
+- [x] 2.4 Token guard passes: `npm run check:tokens`
+- [x] 2.5 Existing logged-stats e2e still passes: `npm run test:e2e -- muscle-group-stats.spec.ts`
 
 #### Manual
 
-- [ ] 2.6 `/muscle-groups` looks and behaves exactly as before in both languages (expand, checkbox, windows)
+- [x] 2.6 `/muscle-groups` looks and behaves exactly as before in both languages (expand, checkbox, windows)
 
 ### Phase 3: Editor panel
 

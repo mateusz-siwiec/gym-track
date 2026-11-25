@@ -27,6 +27,8 @@ const FILES = [
   'src/components/TechniqueTooltip.tsx',
   'src/components/MuscleMap.tsx',
   'src/components/MuscleFigure.tsx',
+  'src/components/MuscleBreakdown.tsx',
+  'src/components/PlanMuscleStats.tsx',
   'src/styles/workout.css',
 ]
 

@@ -175,6 +175,17 @@
       "moveUp": "Move up",
       "moveDown": "Move down",
       "remove": "Remove"
+    },
+    "muscles": {
+      "title": "Muscles worked",
+      "empty": "Add exercises with sets to see which muscles this plan works.",
+      "total_one": "{{count}} planned set in total",
+      "total_other": "{{count}} planned sets in total",
+      "loading": "Loading plan…",
+      "loadFailed": "Failed to load plan muscles",
+      "combinedHeading": "Combined muscles worked",
+      "combinedPlans": "Included plans: {{names}}",
+      "selectHint": "Select 2 or more plans to see their combined muscle breakdown."
     }
   },
   "exercises": {

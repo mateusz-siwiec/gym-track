@@ -66,18 +66,38 @@ export interface ChartSeries {
 }
 
 /** Newest first: by date, then by creation time for several entries on the same date. */
-function newestFirst(a: BodyMeasurement, b: BodyMeasurement): number {
+export function newestFirst(a: BodyMeasurement, b: BodyMeasurement): number {
   if (a.measuredOn !== b.measuredOn) return a.measuredOn < b.measuredOn ? 1 : -1
-  if (a.createdAt !== b.createdAt) return a.createdAt < b.createdAt ? 1 : -1
-  return 0
+  const ka = instantKey(a.createdAt)
+  const kb = instantKey(b.createdAt)
+  return ka === kb ? 0 : ka < kb ? 1 : -1
+}
+
+/**
+ * ISO instants carry 0, 3, 6 or 9 fraction digits, so plain string comparison is wrong
+ * ("…05.123Z" > "…05.123456Z") and Date.parse drops micros. Pad the fraction to 9 digits.
+ */
+function instantKey(iso: string): string {
+  const match = /^(.*?)(?:\.(\d+))?Z$/.exec(iso)
+  return match ? `${match[1]}.${(match[2] ?? '').padEnd(9, '0')}` : iso
+}
+
+/** Values of the field from entries that are already sorted newest first. */
+function valuesFromSorted(sorted: readonly BodyMeasurement[], field: MeasurementKey): DatedValue[] {
+  return sorted.flatMap((entry) => {
+    const value = entry[field]
+    return value === null || value === undefined ? [] : [{ value, date: entry.measuredOn }]
+  })
 }
 
 /** Entries that carry a value for the field, newest first. */
 function valuesFor(entries: readonly BodyMeasurement[], field: MeasurementKey): DatedValue[] {
-  return [...entries].sort(newestFirst).flatMap((entry) => {
-    const value = entry[field]
-    return value === null || value === undefined ? [] : [{ value, date: entry.measuredOn }]
-  })
+  return valuesFromSorted([...entries].sort(newestFirst), field)
+}
+
+function changeOf([latest, previous]: DatedValue[]): Change | null {
+  if (!latest || !previous) return null
+  return { delta: Math.round((latest.value - previous.value) * 100) / 100, latest, previous }
 }
 
 /** The newest non-null value of every field (entries are sparse), or null when it was never recorded. */
@@ -91,9 +111,20 @@ export function latestValues(entries: readonly BodyMeasurement[]): LatestValues 
 
 /** Latest value versus the previous entry that has the field; null when there is no previous one. */
 export function changeFromPrevious(entries: readonly BodyMeasurement[], field: MeasurementKey): Change | null {
-  const [latest, previous] = valuesFor(entries, field)
-  if (!latest || !previous) return null
-  return { delta: Math.round((latest.value - previous.value) * 100) / 100, latest, previous }
+  return changeOf(valuesFor(entries, field))
+}
+
+/** Latest value and change of every field, sorting the entries only once. */
+export function latestSummary(
+  entries: readonly BodyMeasurement[],
+): Record<MeasurementKey, { latest: DatedValue | null; change: Change | null }> {
+  const sorted = [...entries].sort(newestFirst)
+  const result = {} as Record<MeasurementKey, { latest: DatedValue | null; change: Change | null }>
+  for (const { key } of MEASUREMENT_FIELDS) {
+    const values = valuesFromSorted(sorted, key)
+    result[key] = { latest: values[0] ?? null, change: changeOf(values) }
+  }
+  return result
 }
 
 function shiftDate(iso: string, days: number): string {

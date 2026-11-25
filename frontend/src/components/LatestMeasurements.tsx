@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { BodyMeasurement } from '../api/client'
-import { changeFromPrevious, latestValues, MEASUREMENT_FIELDS } from '../utils/bodyMeasurements'
+import { latestSummary, MEASUREMENT_FIELDS } from '../utils/bodyMeasurements'
 import { formatCalendarDate, formatMeasurement } from '../utils/format'
 
 interface LatestMeasurementsProps {
@@ -10,8 +10,8 @@ interface LatestMeasurementsProps {
 
 export default function LatestMeasurements({ entries }: LatestMeasurementsProps) {
   const { t } = useTranslation()
-  const latest = useMemo(() => latestValues(entries), [entries])
-  const fields = MEASUREMENT_FIELDS.filter((field) => latest[field.key] !== null)
+  const summary = useMemo(() => latestSummary(entries), [entries])
+  const fields = MEASUREMENT_FIELDS.filter((field) => summary[field.key].latest !== null)
 
   return (
     <section className="measurement-latest" aria-labelledby="measurement-latest-title">
@@ -21,9 +21,9 @@ export default function LatestMeasurements({ entries }: LatestMeasurementsProps)
       ) : (
         <ul className="measurement-cards">
           {fields.map((field) => {
-            const current = latest[field.key]!
+            const current = summary[field.key].latest!
             const unit = t(`measurements.units.${field.unit}`)
-            const change = changeFromPrevious(entries, field.key)
+            const change = summary[field.key].change
             let visible: string | null = null
             let spoken: string | null = null
             if (change) {

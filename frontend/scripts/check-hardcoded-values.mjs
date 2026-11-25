@@ -31,6 +31,7 @@ const FILES = [
   'src/components/PlanMuscleStats.tsx',
   'src/pages/PlansPage.tsx',
   'src/styles/workout.css',
+  'src/components/InfoTooltip.tsx',
   'src/components/MeasurementForm.tsx',
   'src/components/MeasurementHistory.tsx',
   'src/components/LatestMeasurements.tsx',

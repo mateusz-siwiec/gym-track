@@ -123,7 +123,6 @@ export default function MeasurementForm({ entry, onSaved, onCancel }: Measuremen
     const id = `measurement-${field.key}`
     const errorId = `${id}-error`
     const error = submitted ? fieldErrors[field.key] : undefined
-    const area = t(`measurements.areas.${field.area}`)
     const steps = translateObject(`measurements.tips.${field.area}.steps`, { returnObjects: true })
     return (
       <div className="field measurement-field" key={field.key}>
@@ -133,7 +132,7 @@ export default function MeasurementForm({ entry, onSaved, onCancel }: Measuremen
           </label>
           <InfoTooltip
             title={t(`measurements.tips.${field.area}.title`)}
-            triggerLabel={`${t('measurements.tips.show')}: ${area}`}
+            triggerLabel={`${t('measurements.tips.show')}: ${t(`measurements.fields.${field.key}`)}`}
             closeLabel={t('measurements.tips.hide')}
           >
             {Array.isArray(steps) && (

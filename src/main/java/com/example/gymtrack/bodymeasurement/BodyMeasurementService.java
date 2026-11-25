@@ -67,10 +67,9 @@ public class BodyMeasurementService {
 	@Transactional
 	public BigDecimal setTargetWeight(UUID userId, Object value) {
 		BigDecimal target = value == null ? null : parseTarget(value);
-		User user = userRepository.findById(userId)
-			.orElseThrow(() -> new ResourceNotFoundException(ErrorCode.USER_NOT_FOUND, "User not found"));
-		user.setTargetWeightKg(target);
-		userRepository.save(user);
+		if (userRepository.updateTargetWeight(userId, target) == 0) {
+			throw new ResourceNotFoundException(ErrorCode.USER_NOT_FOUND, "User not found");
+		}
 		return target;
 	}
 

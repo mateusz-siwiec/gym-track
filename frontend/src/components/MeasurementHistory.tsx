@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { deleteBodyMeasurement } from '../api/client'
 import type { BodyMeasurement } from '../api/client'
-import { MEASUREMENT_FIELDS } from '../utils/bodyMeasurements'
+import { MEASUREMENT_FIELDS, newestFirst } from '../utils/bodyMeasurements'
 import { translateError } from '../utils/errors'
 import type { ErrorInfo } from '../utils/errors'
 import { formatCalendarDate, formatMeasurement } from '../utils/format'
@@ -13,12 +13,6 @@ interface MeasurementHistoryProps {
   editingId: string | null
   onEdit: (entry: BodyMeasurement) => void
   onDeleted: (id: string) => void
-}
-
-function newestFirst(a: BodyMeasurement, b: BodyMeasurement): number {
-  if (a.measuredOn !== b.measuredOn) return a.measuredOn < b.measuredOn ? 1 : -1
-  if (a.createdAt !== b.createdAt) return a.createdAt < b.createdAt ? 1 : -1
-  return 0
 }
 
 export default function MeasurementHistory({ entries, editingId, onEdit, onDeleted }: MeasurementHistoryProps) {

@@ -271,6 +271,31 @@ test('the how-to-measure tooltip opens by keyboard and shows its steps in Englis
   await expect(panel).toContainText('Jak się ważyć')
   await expect(panel).toContainText('Waż się o tej samej porze dnia, najlepiej rano.')
   await expect(panel.locator('li')).toHaveCount(3)
+
+  // Left and right limbs get distinct accessible names.
+  await expect(page.getByRole('button', { name: 'Jak mierzyć: Ramię lewe', exact: true })).toHaveCount(1)
+  await expect(page.getByRole('button', { name: 'Jak mierzyć: Ramię prawe', exact: true })).toHaveCount(1)
+})
+
+test('a failed load shows the error and Retry loads the page', async ({ page, request }) => {
+  const user = await registerViaApi(request, 'meas-retry')
+  await createMeasurementViaApi(request, user, localDate(0), { weightKg: 82.5 })
+  let failing = true
+  await page.route('**/api/body-measurements', async (route) => {
+    if (failing && route.request().method() === 'GET') {
+      await route.fulfill({ status: 500, contentType: 'application/json', body: JSON.stringify({ error: 'boom', code: 'INTERNAL_ERROR' }) })
+      return
+    }
+    await route.continue()
+  })
+  await openMeasurements(page, user)
+
+  await expect(page.getByRole('alert')).toBeVisible()
+  await expect(entries(page)).toHaveCount(0)
+  failing = false
+  await page.getByTestId('measurements-retry').click()
+  await expect(page.getByTestId('measurements-retry')).toHaveCount(0)
+  await expect(entries(page)).toHaveCount(1)
 })
 
 test("another user's measurements and target are never visible or reachable", async ({ page, request }) => {

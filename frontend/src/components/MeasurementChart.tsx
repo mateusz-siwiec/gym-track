@@ -19,9 +19,9 @@ type Row = { date: string } & Record<string, number | string>
 export default function MeasurementChart({ entries, targetWeightKg }: MeasurementChartProps) {
   const { t } = useTranslation() // also re-renders on language change so dates and numbers are reformatted
   const [area, setArea] = useState<MeasurementArea>('weight')
-  const [window, setWindow] = useState<ChartWindow>(30)
+  const [range, setRange] = useState<ChartWindow>(30)
 
-  const series = chartSeries(entries, area, window, localToday())
+  const series = chartSeries(entries, area, range, localToday())
   const unit = t(`measurements.units.${area === 'weight' ? 'kg' : 'cm'}`)
   const areaLabel = t(`measurements.areas.${area}`)
   const showTarget = area === 'weight' && targetWeightKg !== null
@@ -41,7 +41,7 @@ export default function MeasurementChart({ entries, targetWeightKg }: Measuremen
     return side ? t(`measurements.chart.${side}`) : areaLabel
   }
 
-  const rangeLabel = window === 'all' ? t('measurements.chart.windowAll') : t('measurements.chart.windowDays', { days: window })
+  const rangeLabel = range === 'all' ? t('measurements.chart.windowAll') : t('measurements.chart.windowDays', { days: range })
   const latestParts = series.map((s) => {
     const last = s.points[s.points.length - 1]
     return `${seriesName(s.side)} ${formatMeasurement(last.value)} ${unit}`
@@ -123,8 +123,8 @@ export default function MeasurementChart({ entries, targetWeightKg }: Measuremen
             type="button"
             className="btn-secondary"
             data-testid={`measurement-window-${value}`}
-            aria-pressed={window === value}
-            onClick={() => setWindow(value)}
+            aria-pressed={range === value}
+            onClick={() => setRange(value)}
           >
             {value === 'all' ? t('measurements.chart.windowAll') : t('measurements.chart.windowDays', { days: value })}
           </button>

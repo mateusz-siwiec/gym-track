@@ -5,8 +5,10 @@ import {
   changeFromPrevious,
   checkRange,
   filterWindow,
+  latestSummary,
   latestValues,
   MEASUREMENT_FIELDS,
+  newestFirst,
   parseDecimal,
 } from './bodyMeasurements'
 
@@ -191,5 +193,32 @@ describe('checkRange', () => {
     expect(checkRange('weightKg', 72.555)).toBe('decimals')
     expect(checkRange('hipsCm', 90.5)).toBeNull()
     expect(checkRange('hipsCm', 90.55)).toBe('decimals')
+  })
+})
+
+describe('newestFirst', () => {
+  it('orders same-date entries by real creation time, whatever the fraction length', () => {
+    const earlier = { ...entry('2026-06-10', { weightKg: 80 }), createdAt: '2026-06-10T08:00:05.123Z' }
+    const later = { ...entry('2026-06-10', { weightKg: 79 }), createdAt: '2026-06-10T08:00:05.123456Z' }
+    expect([earlier, later].sort(newestFirst)).toEqual([later, earlier])
+    expect([later, earlier].sort(newestFirst)).toEqual([later, earlier])
+  })
+})
+
+describe('latestSummary', () => {
+  it('gives the same latest values and changes as latestValues and changeFromPrevious', () => {
+    const entries = [
+      entry('2026-06-01', { weightKg: 80, waistCm: 90 }),
+      entry('2026-06-10', { weightKg: 79.4 }),
+      entry('2026-06-10', { waistCm: 89, chestCm: 100 }),
+    ]
+    const summary = latestSummary(entries)
+    const latest = latestValues(entries)
+    for (const { key } of MEASUREMENT_FIELDS) {
+      expect(summary[key].latest).toEqual(latest[key])
+      expect(summary[key].change).toEqual(changeFromPrevious(entries, key))
+    }
+    expect(summary.weightKg.change?.delta).toBe(-0.6)
+    expect(summary.chestCm.change).toBeNull()
   })
 })

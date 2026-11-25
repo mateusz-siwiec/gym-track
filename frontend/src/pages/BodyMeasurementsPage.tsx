@@ -20,6 +20,7 @@ export default function BodyMeasurementsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<ErrorInfo | null>(null)
   const [editing, setEditing] = useState<BodyMeasurement | null>(null)
+  const [attempt, setAttempt] = useState(0)
 
   useEffect(() => {
     let active = true
@@ -36,7 +37,13 @@ export default function BodyMeasurementsPage() {
     return () => {
       active = false
     }
-  }, [])
+  }, [attempt])
+
+  function retry() {
+    setError(null)
+    setLoading(true)
+    setAttempt((current) => current + 1)
+  }
 
   const entries = data?.entries ?? []
 
@@ -67,7 +74,16 @@ export default function BodyMeasurementsPage() {
       <main className="page-card measurements-card">
         <h1>{t('measurements.title')}</h1>
         <p className="page-subtext">{t('measurements.subtitle')}</p>
-        {error && <p className="error-text">{translateError(error.err, error.key)}</p>}
+        {error && (
+          <>
+            <p className="error-text" role="alert">
+              {translateError(error.err, error.key)}
+            </p>
+            <button type="button" className="btn-secondary" data-testid="measurements-retry" onClick={retry}>
+              {t('common.retry')}
+            </button>
+          </>
+        )}
         {loading ? (
           <p className="page-subtext">{t('measurements.loading')}</p>
         ) : (

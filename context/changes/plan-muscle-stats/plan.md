@@ -321,28 +321,28 @@ None. No schema or API changes.
 
 #### Automated
 
-- [x] 3.1 Build and lint pass: `npm run build`, `npm run lint`
-- [x] 3.2 Token guard passes: `npm run check:tokens`
-- [x] 3.3 Unit tests pass: `npm test`
+- [x] 3.1 Build and lint pass: `npm run build`, `npm run lint` — eb9fb4e
+- [x] 3.2 Token guard passes: `npm run check:tokens` — eb9fb4e
+- [x] 3.3 Unit tests pass: `npm test` — eb9fb4e
 
 #### Manual
 
 - [x] 3.4 Adding a bench press shows chest, plus front delts and triceps with the secondary checkbox ticked
-- [x] 3.5 Changing sets from 3 to 5 updates the numbers immediately; clearing the field ignores that entry; removing an entry updates the panel
-- [x] 3.6 Editing an existing plan shows its stats on load; works in en and pl; usable at phone width
+- [x] 3.5 Changing sets from 3 to 5 updates the numbers immediately; clearing the field ignores that entry; removing an entry updates the panel — eb9fb4e
+- [x] 3.6 Editing an existing plan shows its stats on load; works in en and pl; usable at phone width — eb9fb4e
 
 ### Phase 4: Plans list breakdown and combined view
 
 #### Automated
 
-- [ ] 4.1 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
-- [ ] 4.2 Unit tests pass: `npm test`
+- [x] 4.1 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
+- [x] 4.2 Unit tests pass: `npm test`
 
 #### Manual
 
-- [ ] 4.3 Expanding a row shows that plan's breakdown; collapsing hides it; deleting an expanded or selected plan removes it cleanly
-- [ ] 4.4 Ticking three plans shows the summed breakdown and the three names; unticking one updates it; the sum matches the three individual row breakdowns
-- [ ] 4.5 Works with keyboard only, in en and pl, and at phone width
+- [x] 4.3 Expanding a row shows that plan's breakdown; collapsing hides it; deleting an expanded or selected plan removes it cleanly
+- [x] 4.4 Ticking three plans shows the summed breakdown and the three names; unticking one updates it; the sum matches the three individual row breakdowns
+- [x] 4.5 Works with keyboard only, in en and pl, and at phone width
 
 ### Phase 5: E2E coverage and docs
 

@@ -185,7 +185,11 @@
       "loadFailed": "Failed to load plan muscles",
       "combinedHeading": "Combined muscles worked",
       "combinedPlans": "Included plans: {{names}}",
-      "selectHint": "Select 2 or more plans to see their combined muscle breakdown."
+      "selectHint": "Select 2 or more plans to see their combined muscle breakdown.",
+      "selectPlan": "Select {{name}} for combined muscles",
+      "show": "Show muscles",
+      "hide": "Hide muscles",
+      "combinedFailed": "Could not load: {{names}}"
     }
   },
   "exercises": {

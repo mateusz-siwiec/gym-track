@@ -197,7 +197,11 @@
       "loadFailed": "Nie udało się wczytać mięśni planu",
       "combinedHeading": "Łączne zaangażowanie mięśni",
       "combinedPlans": "Uwzględnione plany: {{names}}",
-      "selectHint": "Zaznacz co najmniej 2 plany, aby zobaczyć łączne zestawienie mięśni."
+      "selectHint": "Zaznacz co najmniej 2 plany, aby zobaczyć łączne zestawienie mięśni.",
+      "selectPlan": "Wybierz plan {{name}} do łącznego zestawienia mięśni",
+      "show": "Pokaż mięśnie",
+      "hide": "Ukryj mięśnie",
+      "combinedFailed": "Nie udało się wczytać: {{names}}"
     }
   },
   "exercises": {

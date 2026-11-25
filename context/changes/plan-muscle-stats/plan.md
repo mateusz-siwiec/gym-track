@@ -327,7 +327,7 @@ None. No schema or API changes.
 
 #### Manual
 
-- [x] 3.4 Adding a bench press shows chest, plus front delts and triceps with the secondary checkbox ticked
+- [x] 3.4 Adding a bench press shows chest, plus front delts and triceps with the secondary checkbox ticked — eb9fb4e
 - [x] 3.5 Changing sets from 3 to 5 updates the numbers immediately; clearing the field ignores that entry; removing an entry updates the panel — eb9fb4e
 - [x] 3.6 Editing an existing plan shows its stats on load; works in en and pl; usable at phone width — eb9fb4e
 
@@ -354,4 +354,4 @@ None. No schema or API changes.
 
 #### Manual
 
-- [x] 5.4 README and test plan read correctly and link nothing stale
+- [x] 5.4 README and test plan read correctly and link nothing stale — c22a9d1

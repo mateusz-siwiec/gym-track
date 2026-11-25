@@ -27,3 +27,5 @@ export const tooltipProps = {
 }
 
 export const seriesColor = 'var(--chart-bar)'
+export const secondSeriesColor = 'var(--chart-bar-2)'
+export const targetLineColor = 'var(--chart-target)'

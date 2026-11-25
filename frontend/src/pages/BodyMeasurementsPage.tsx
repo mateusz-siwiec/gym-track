@@ -3,8 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { listBodyMeasurements } from '../api/client'
 import type { BodyMeasurement, BodyMeasurementsResponse } from '../api/client'
 import LatestMeasurements from '../components/LatestMeasurements'
+import MeasurementChart from '../components/MeasurementChart'
 import MeasurementForm from '../components/MeasurementForm'
 import MeasurementHistory from '../components/MeasurementHistory'
+import TargetWeight from '../components/TargetWeight'
+import { latestValues } from '../utils/bodyMeasurements'
 import { translateError } from '../utils/errors'
 import type { ErrorInfo } from '../utils/errors'
 import '../styles/page.css'
@@ -50,6 +53,10 @@ export default function BodyMeasurementsPage() {
     if (wasEdit) setEditing(null)
   }
 
+  function handleTargetChanged(target: number | null) {
+    setData((current) => ({ entries: [], ...current, targetWeightKg: target }))
+  }
+
   function handleDeleted(id: string) {
     setData((current) => (current ? { ...current, entries: current.entries.filter((entry) => entry.id !== id) } : current))
     setEditing((current) => (current?.id === id ? null : current))
@@ -71,6 +78,12 @@ export default function BodyMeasurementsPage() {
               ) : (
                 <LatestMeasurements entries={entries} />
               )}
+              <TargetWeight
+                targetWeightKg={data?.targetWeightKg ?? null}
+                latestWeightKg={latestValues(entries).weightKg?.value ?? null}
+                onChange={handleTargetChanged}
+              />
+              {entries.length > 0 && <MeasurementChart entries={entries} targetWeightKg={data?.targetWeightKg ?? null} />}
               <section aria-label={editing ? t('measurements.form.editTitle') : t('measurements.form.title')}>
                 <MeasurementForm
                   key={editing?.id ?? 'new'}

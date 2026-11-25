@@ -565,7 +565,8 @@
       "noData": "No data in this time range.",
       "target": "Target weight",
       "left": "Left",
-      "right": "Right"
+      "right": "Right",
+      "summary": "{{area}} chart, {{range}}. Latest: {{latest}}."
     },
     "target": {
       "title": "Target weight",
@@ -577,6 +578,9 @@
       "current": "Target: {{value}} kg",
       "remaining": "{{value}} kg to go",
       "reached": "Target reached",
+      "above": "{{value}} kg above target",
+      "below": "{{value}} kg below target",
+      "noWeight": "Log a weight to see your progress toward the target.",
       "saveFailed": "Could not save the target weight.",
       "invalid": "Enter a target weight from 20 to 500 kg."
     }

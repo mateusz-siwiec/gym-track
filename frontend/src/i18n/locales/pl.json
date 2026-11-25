@@ -595,7 +595,8 @@
       "noData": "Brak danych w tym zakresie czasu.",
       "target": "Waga docelowa",
       "left": "Lewe",
-      "right": "Prawe"
+      "right": "Prawe",
+      "summary": "Wykres: {{area}}, {{range}}. Ostatnio: {{latest}}."
     },
     "target": {
       "title": "Waga docelowa",
@@ -607,6 +608,9 @@
       "current": "Cel: {{value}} kg",
       "remaining": "Zostało {{value}} kg",
       "reached": "Cel osiągnięty",
+      "above": "{{value}} kg powyżej celu",
+      "below": "{{value}} kg poniżej celu",
+      "noWeight": "Dodaj pomiar wagi, aby zobaczyć postęp w kierunku celu.",
       "saveFailed": "Nie udało się zapisać wagi docelowej.",
       "invalid": "Wpisz wagę docelową od 20 do 500 kg."
     }

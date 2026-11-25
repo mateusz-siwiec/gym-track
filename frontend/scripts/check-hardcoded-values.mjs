@@ -34,6 +34,8 @@ const FILES = [
   'src/components/MeasurementForm.tsx',
   'src/components/MeasurementHistory.tsx',
   'src/components/LatestMeasurements.tsx',
+  'src/components/MeasurementChart.tsx',
+  'src/components/TargetWeight.tsx',
   'src/styles/measurements.css',
 ]
 

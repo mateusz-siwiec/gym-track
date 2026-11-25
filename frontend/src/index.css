@@ -18,6 +18,8 @@
   --chart-tooltip-bg: var(--bg);
   --chart-tooltip-border: var(--border);
   --chart-bar: var(--accent);
+  --chart-bar-2: var(--success);
+  --chart-target: var(--text-h);
   --muscle-primary: var(--accent);
   --muscle-secondary: var(--accent-border);
   --muscle-idle: var(--border);

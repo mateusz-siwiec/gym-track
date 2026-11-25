@@ -40,6 +40,17 @@
   color: var(--text-h);
 }
 
+/* Target weight */
+.measurement-target-progress {
+  font-weight: 500;
+  color: var(--text-h);
+  margin-bottom: 0.75rem;
+}
+
+.measurement-target-form {
+  margin-top: 0.75rem;
+}
+
 /* Form */
 .measurement-form {
   padding: 1rem;

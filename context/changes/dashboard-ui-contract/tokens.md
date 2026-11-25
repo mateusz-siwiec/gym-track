@@ -20,7 +20,7 @@ Values live in `frontend/src/index.css`.
 
 Muscle map aliases (in `:root`, resolve per theme): `--muscle-primary` = `var(--accent)`, `--muscle-secondary` = `var(--accent-border)`, `--muscle-idle` = `var(--border)`.
 
-Chart aliases (in `:root`, resolve per theme): `--chart-tick` = `var(--text)`, `--chart-grid` = `var(--border)`, `--chart-tooltip-bg` = `var(--bg)`, `--chart-tooltip-border` = `var(--border)`, `--chart-bar` = `var(--accent)`.
+Chart aliases (in `:root`, resolve per theme): `--chart-tick` = `var(--text)`, `--chart-grid` = `var(--border)`, `--chart-tooltip-bg` = `var(--bg)`, `--chart-tooltip-border` = `var(--border)`, `--chart-bar` = `var(--accent)`, `--chart-bar-2` = `var(--success)` (second series, e.g. the right side of a limb on the body measurements chart), `--chart-target` = `var(--text-h)` (target weight reference line).
 
 ## Contrast (WCAG, computed)
 

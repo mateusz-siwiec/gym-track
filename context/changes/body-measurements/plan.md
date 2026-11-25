@@ -409,28 +409,28 @@ V19 only adds a new table and a nullable column; no existing data is touched. Fl
 
 #### Automated
 
-- [x] 4.1 Unit tests pass: `npm test`
-- [x] 4.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
+- [x] 4.1 Unit tests pass: `npm test` — f348c40
+- [x] 4.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens` — f348c40
 
 #### Manual
 
-- [x] 4.3 Log an entry with a few fields (including comma decimals in Polish) and see it in the history and the latest cards with the correct change
-- [x] 4.4 Edit an entry (including clearing a field) and delete one with confirmation
-- [x] 4.5 Every field's tooltip opens by hover, keyboard focus and tap, and the steps read clearly in English and Polish
-- [x] 4.6 Works keyboard-only and at phone width
+- [x] 4.3 Log an entry with a few fields (including comma decimals in Polish) and see it in the history and the latest cards with the correct change — f348c40
+- [x] 4.4 Edit an entry (including clearing a field) and delete one with confirmation — f348c40
+- [x] 4.5 Every field's tooltip opens by hover, keyboard focus and tap, and the steps read clearly in English and Polish — f348c40
+- [x] 4.6 Works keyboard-only and at phone width — f348c40
 
 ### Phase 5: Trend chart and target weight
 
 #### Automated
 
-- [ ] 5.1 Unit tests pass: `npm test`
-- [ ] 5.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
+- [x] 5.1 Unit tests pass: `npm test`
+- [x] 5.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
 
 #### Manual
 
-- [ ] 5.3 The selector and the 7/30/90/all window update the chart; limbs show both sides; a single point and sparse data render sensibly
-- [ ] 5.4 Setting, changing and clearing the target weight updates the progress text and the reference line
-- [ ] 5.5 Charts and controls look right in light and dark mode and at phone width
+- [x] 5.3 The selector and the 7/30/90/all window update the chart; limbs show both sides; a single point and sparse data render sensibly
+- [x] 5.4 Setting, changing and clearing the target weight updates the progress text and the reference line
+- [x] 5.5 Charts and controls look right in light and dark mode and at phone width
 
 ### Phase 6: E2E coverage and docs
 

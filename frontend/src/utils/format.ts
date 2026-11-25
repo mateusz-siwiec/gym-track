@@ -67,3 +67,26 @@ export function formatSet({
   const count = reps ?? 0
   return weightKg > 0 ? `${count} × ${weightKg} kg` : i18n.t('common.repsCount', { count })
 }
+
+/** Measurement value with up to two decimals (weight allows two), in the active language's number format. */
+export function formatMeasurement(value: number): string {
+  return value.toLocaleString(appLocale(), { maximumFractionDigits: 2 })
+}
+
+/** A YYYY-MM-DD calendar date shown as the same day in any timezone (no UTC shift). */
+export function formatCalendarDate(iso: string): string {
+  const [year, month, day] = iso.split('-').map(Number)
+  return new Date(year, month - 1, day).toLocaleDateString(appLocale(), {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
+}
+
+/** Today's date in the local timezone as YYYY-MM-DD (toISOString would give the UTC date). */
+export function localToday(): string {
+  const now = new Date()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const day = String(now.getDate()).padStart(2, '0')
+  return `${now.getFullYear()}-${month}-${day}`
+}

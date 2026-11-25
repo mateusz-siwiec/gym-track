@@ -31,6 +31,10 @@ const FILES = [
   'src/components/PlanMuscleStats.tsx',
   'src/pages/PlansPage.tsx',
   'src/styles/workout.css',
+  'src/components/MeasurementForm.tsx',
+  'src/components/MeasurementHistory.tsx',
+  'src/components/LatestMeasurements.tsx',
+  'src/styles/measurements.css',
 ]
 
 const PALETTES =

@@ -398,26 +398,26 @@ V19 only adds a new table and a nullable column; no existing data is touched. Fl
 
 #### Automated
 
-- [x] 3.1 Unit tests pass (including the new util tests and locale parity): `npm test`
-- [x] 3.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
+- [x] 3.1 Unit tests pass (including the new util tests and locale parity): `npm test` — 518b201
+- [x] 3.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens` — 518b201
 
 #### Manual
 
-- [x] 3.3 The Measurements link opens the empty-state page in English and Polish, and the title shows in the narrow drawer layout
+- [x] 3.3 The Measurements link opens the empty-state page in English and Polish, and the title shows in the narrow drawer layout — 518b201
 
 ### Phase 4: Log and history
 
 #### Automated
 
-- [ ] 4.1 Unit tests pass: `npm test`
-- [ ] 4.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
+- [x] 4.1 Unit tests pass: `npm test`
+- [x] 4.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
 
 #### Manual
 
-- [ ] 4.3 Log an entry with a few fields (including comma decimals in Polish) and see it in the history and the latest cards with the correct change
-- [ ] 4.4 Edit an entry (including clearing a field) and delete one with confirmation
-- [ ] 4.5 Every field's tooltip opens by hover, keyboard focus and tap, and the steps read clearly in English and Polish
-- [ ] 4.6 Works keyboard-only and at phone width
+- [x] 4.3 Log an entry with a few fields (including comma decimals in Polish) and see it in the history and the latest cards with the correct change
+- [x] 4.4 Edit an entry (including clearing a field) and delete one with confirmation
+- [x] 4.5 Every field's tooltip opens by hover, keyboard focus and tap, and the steps read clearly in English and Polish
+- [x] 4.6 Works keyboard-only and at phone width
 
 ### Phase 5: Trend chart and target weight
 

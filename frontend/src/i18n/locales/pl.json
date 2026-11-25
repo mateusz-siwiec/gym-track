@@ -496,7 +496,11 @@
       "tooManyDecimals_other": "{{field}} może mieć co najwyżej {{count}} miejsca po przecinku.",
       "dateRequired": "Wybierz datę.",
       "dateTooEarly": "Data nie może być wcześniejsza niż 1 stycznia 1950.",
-      "dateInFuture": "Data nie może być z przyszłości."
+      "dateInFuture": "Data nie może być z przyszłości.",
+      "groups": {
+        "trunk": "Tułów",
+        "limbs": "Kończyny"
+      }
     },
     "tips": {
       "show": "Jak mierzyć",

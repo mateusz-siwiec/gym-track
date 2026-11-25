@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { listBodyMeasurements } from '../api/client'
-import type { BodyMeasurementsResponse } from '../api/client'
-import { MEASUREMENT_FIELDS } from '../utils/bodyMeasurements'
-import { formatDate, formatNumber } from '../utils/format'
+import type { BodyMeasurement, BodyMeasurementsResponse } from '../api/client'
+import LatestMeasurements from '../components/LatestMeasurements'
+import MeasurementForm from '../components/MeasurementForm'
+import MeasurementHistory from '../components/MeasurementHistory'
 import { translateError } from '../utils/errors'
 import type { ErrorInfo } from '../utils/errors'
 import '../styles/page.css'
+import '../styles/workout.css'
+import '../styles/measurements.css'
 
 export default function BodyMeasurementsPage() {
   const { t } = useTranslation()
   const [data, setData] = useState<BodyMeasurementsResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<ErrorInfo | null>(null)
+  const [editing, setEditing] = useState<BodyMeasurement | null>(null)
 
   useEffect(() => {
     let active = true
@@ -33,34 +37,56 @@ export default function BodyMeasurementsPage() {
 
   const entries = data?.entries ?? []
 
+  function handleSaved(saved: BodyMeasurement, wasEdit: boolean) {
+    setData((current) => {
+      const base = current ?? { targetWeightKg: null, entries: [] }
+      return {
+        ...base,
+        entries: wasEdit
+          ? base.entries.map((entry) => (entry.id === saved.id ? saved : entry))
+          : [...base.entries, saved],
+      }
+    })
+    if (wasEdit) setEditing(null)
+  }
+
+  function handleDeleted(id: string) {
+    setData((current) => (current ? { ...current, entries: current.entries.filter((entry) => entry.id !== id) } : current))
+    setEditing((current) => (current?.id === id ? null : current))
+  }
+
   return (
     <div className="page-shell">
-      <main className="page-card">
+      <main className="page-card measurements-card">
         <h1>{t('measurements.title')}</h1>
+        <p className="page-subtext">{t('measurements.subtitle')}</p>
         {error && <p className="error-text">{translateError(error.err, error.key)}</p>}
         {loading ? (
           <p className="page-subtext">{t('measurements.loading')}</p>
-        ) : !error && entries.length === 0 ? (
-          <p className="page-subtext">{t('measurements.empty')}</p>
         ) : (
-          <ul>
-            {entries.map((entry) => (
-              <li key={entry.id}>
-                <strong>{formatDate(entry.measuredOn)}</strong>
-                {MEASUREMENT_FIELDS.flatMap((field) => {
-                  const value = entry[field.key]
-                  return value === null
-                    ? []
-                    : [
-                        <span key={field.key}>
-                          {' · '}
-                          {t(`measurements.fields.${field.key}`)} {formatNumber(value)} {t(`measurements.units.${field.unit}`)}
-                        </span>,
-                      ]
-                })}
-              </li>
-            ))}
-          </ul>
+          !error && (
+            <>
+              {entries.length === 0 ? (
+                <p className="page-subtext">{t('measurements.empty')}</p>
+              ) : (
+                <LatestMeasurements entries={entries} />
+              )}
+              <section aria-label={editing ? t('measurements.form.editTitle') : t('measurements.form.title')}>
+                <MeasurementForm
+                  key={editing?.id ?? 'new'}
+                  entry={editing}
+                  onSaved={handleSaved}
+                  onCancel={() => setEditing(null)}
+                />
+              </section>
+              <MeasurementHistory
+                entries={entries}
+                editingId={editing?.id ?? null}
+                onEdit={setEditing}
+                onDeleted={handleDeleted}
+              />
+            </>
+          )
         )}
       </main>
     </div>

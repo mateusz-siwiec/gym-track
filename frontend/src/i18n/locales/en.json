@@ -468,7 +468,11 @@
       "tooManyDecimals_other": "{{field}} can have at most {{count}} decimal places.",
       "dateRequired": "Choose a date.",
       "dateTooEarly": "The date cannot be before 1 January 1950.",
-      "dateInFuture": "The date cannot be in the future."
+      "dateInFuture": "The date cannot be in the future.",
+      "groups": {
+        "trunk": "Trunk",
+        "limbs": "Limbs"
+      }
     },
     "tips": {
       "show": "How to measure",

@@ -525,3 +525,80 @@ export async function getHistorySession(id: string): Promise<HistoryDetail> {
   const res = await authFetch(`/api/workout-sessions/${encodeURIComponent(id)}`)
   return res.json()
 }
+
+export interface BodyMeasurement {
+  id: string
+  /** Calendar date, YYYY-MM-DD. */
+  measuredOn: string
+  weightKg: number | null
+  waistCm: number | null
+  chestCm: number | null
+  hipsCm: number | null
+  armLeftCm: number | null
+  armRightCm: number | null
+  thighLeftCm: number | null
+  thighRightCm: number | null
+  calfLeftCm: number | null
+  calfRightCm: number | null
+  createdAt: string
+  updatedAt: string
+}
+
+/** Full representation of an entry: a null value clears that measurement. */
+export interface BodyMeasurementInput {
+  measuredOn: string
+  weightKg: number | null
+  waistCm: number | null
+  chestCm: number | null
+  hipsCm: number | null
+  armLeftCm: number | null
+  armRightCm: number | null
+  thighLeftCm: number | null
+  thighRightCm: number | null
+  calfLeftCm: number | null
+  calfRightCm: number | null
+}
+
+export interface BodyMeasurementsResponse {
+  targetWeightKg: number | null
+  entries: BodyMeasurement[]
+}
+
+export async function listBodyMeasurements(): Promise<BodyMeasurementsResponse> {
+  const res = await authFetch('/api/body-measurements')
+  return res.json()
+}
+
+export async function createBodyMeasurement(input: BodyMeasurementInput): Promise<BodyMeasurement> {
+  const res = await authFetch('/api/body-measurements', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  })
+  return res.json()
+}
+
+export async function updateBodyMeasurement(id: string, input: BodyMeasurementInput): Promise<BodyMeasurement> {
+  const res = await authFetch(`/api/body-measurements/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  })
+  return res.json()
+}
+
+/** Resolves on 204 No Content. */
+export async function deleteBodyMeasurement(id: string): Promise<void> {
+  await authFetch(`/api/body-measurements/${id}`, { method: 'DELETE' })
+}
+
+/** Sets the target weight (20-500 kg) or clears it with null; resolves with the stored value. */
+export async function setTargetWeight(targetWeightKg: number | null): Promise<number | null> {
+  const res = await authFetch('/api/body-measurements/target-weight', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ targetWeightKg }),
+  })
+  const body: { targetWeightKg: number | null } = await res.json()
+  return body.targetWeightKg
+}

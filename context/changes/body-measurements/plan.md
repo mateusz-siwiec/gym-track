@@ -386,24 +386,24 @@ V19 only adds a new table and a nullable column; no existing data is touched. Fl
 
 #### Automated
 
-- [x] 2.1 Unit tests pass: `npm test`
-- [x] 2.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
-- [x] 2.3 Existing tooltip behaviour is unchanged: `npm run test:e2e -- technique-tooltip.spec.ts exercises-list.spec.ts muscle-map.spec.ts exercise-favorites.spec.ts`
+- [x] 2.1 Unit tests pass: `npm test` — 8647bce
+- [x] 2.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens` — 8647bce
+- [x] 2.3 Existing tooltip behaviour is unchanged: `npm run test:e2e -- technique-tooltip.spec.ts exercises-list.spec.ts muscle-map.spec.ts exercise-favorites.spec.ts` — 8647bce
 
 #### Manual
 
-- [x] 2.4 Tooltips on `/exercises` and in the exercise form behave exactly as before (hover, keyboard focus, Escape, outside click, phone bottom sheet)
+- [x] 2.4 Tooltips on `/exercises` and in the exercise form behave exactly as before (hover, keyboard focus, Escape, outside click, phone bottom sheet) — 8647bce
 
 ### Phase 3: Frontend foundations
 
 #### Automated
 
-- [ ] 3.1 Unit tests pass (including the new util tests and locale parity): `npm test`
-- [ ] 3.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
+- [x] 3.1 Unit tests pass (including the new util tests and locale parity): `npm test`
+- [x] 3.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
 
 #### Manual
 
-- [ ] 3.3 The Measurements link opens the empty-state page in English and Polish, and the title shows in the narrow drawer layout
+- [x] 3.3 The Measurements link opens the empty-state page in English and Polish, and the title shows in the narrow drawer layout
 
 ### Phase 4: Log and history
 

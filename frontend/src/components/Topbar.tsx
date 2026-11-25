@@ -9,11 +9,19 @@ import '../styles/topbar.css'
 /** Translation key of the page title shown next to the menu button on narrow screens. */
 function titleKey(
   pathname: string,
-): 'nav.dashboard' | 'nav.workout' | 'nav.history' | 'nav.plans' | 'nav.exercises' | 'muscleStats.title' {
+):
+  | 'nav.dashboard'
+  | 'nav.workout'
+  | 'nav.history'
+  | 'nav.plans'
+  | 'nav.measurements'
+  | 'nav.exercises'
+  | 'muscleStats.title' {
   if (pathname === '/') return 'nav.dashboard'
   if (pathname.startsWith('/workout')) return 'nav.workout'
   if (pathname.startsWith('/history')) return 'nav.history'
   if (pathname.startsWith('/plans')) return 'nav.plans'
+  if (pathname.startsWith('/measurements')) return 'nav.measurements'
   if (pathname.startsWith('/exercises')) return 'nav.exercises'
   if (pathname.startsWith('/muscle-groups')) return 'muscleStats.title'
   return 'nav.dashboard'
@@ -86,6 +94,9 @@ export default function Topbar() {
           </NavLink>
           <NavLink to="/plans" className="topbar-link" onClick={closeMenu}>
             {t('nav.plans')}
+          </NavLink>
+          <NavLink to="/measurements" className="topbar-link" onClick={closeMenu}>
+            {t('nav.measurements')}
           </NavLink>
           <ExercisesMenu onNavigate={closeMenu} />
         </nav>

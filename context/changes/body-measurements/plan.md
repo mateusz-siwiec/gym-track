@@ -423,23 +423,23 @@ V19 only adds a new table and a nullable column; no existing data is touched. Fl
 
 #### Automated
 
-- [x] 5.1 Unit tests pass: `npm test`
-- [x] 5.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens`
+- [x] 5.1 Unit tests pass: `npm test` — ccb91ae
+- [x] 5.2 Build, lint and token guard pass: `npm run build`, `npm run lint`, `npm run check:tokens` — ccb91ae
 
 #### Manual
 
-- [x] 5.3 The selector and the 7/30/90/all window update the chart; limbs show both sides; a single point and sparse data render sensibly
-- [x] 5.4 Setting, changing and clearing the target weight updates the progress text and the reference line
-- [x] 5.5 Charts and controls look right in light and dark mode and at phone width
+- [x] 5.3 The selector and the 7/30/90/all window update the chart; limbs show both sides; a single point and sparse data render sensibly — ccb91ae
+- [x] 5.4 Setting, changing and clearing the target weight updates the progress text and the reference line — ccb91ae
+- [x] 5.5 Charts and controls look right in light and dark mode and at phone width — ccb91ae
 
 ### Phase 6: E2E coverage and docs
 
 #### Automated
 
-- [ ] 6.1 New e2e passes: `npm run test:e2e -- body-measurements.spec.ts`
-- [ ] 6.2 Full e2e suite passes: `npm run test:e2e`
-- [ ] 6.3 Backend suite passes: `./mvnw test`
+- [x] 6.1 New e2e passes: `npm run test:e2e -- body-measurements.spec.ts`
+- [x] 6.2 Full e2e suite passes: `npm run test:e2e`
+- [x] 6.3 Backend suite passes: `./mvnw test`
 
 #### Manual
 
-- [ ] 6.4 README, test plan and CLAUDE.md read correctly and link nothing stale
+- [x] 6.4 README, test plan and CLAUDE.md read correctly and link nothing stale

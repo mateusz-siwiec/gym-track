@@ -69,3 +69,53 @@ export async function exerciseIdByGroup(request: APIRequestContext, user: ApiUse
   }
   return match.id
 }
+
+/** The calendar date `daysAgo` days before today in the browser's local time, as YYYY-MM-DD (matches the app's own "today"). */
+export function localDate(daysAgo = 0): string {
+  const date = new Date()
+  date.setDate(date.getDate() - daysAgo)
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${date.getFullYear()}-${month}-${day}`
+}
+
+export interface MeasurementValues {
+  weightKg?: number
+  waistCm?: number
+  chestCm?: number
+  hipsCm?: number
+  armLeftCm?: number
+  armRightCm?: number
+  thighLeftCm?: number
+  thighRightCm?: number
+  calfLeftCm?: number
+  calfRightCm?: number
+}
+
+/** Creates a body measurement entry (omitted fields stay empty) and returns its id. */
+export async function createMeasurementViaApi(
+  request: APIRequestContext,
+  user: ApiUser,
+  measuredOn: string,
+  values: MeasurementValues,
+): Promise<string> {
+  const response = await request.post(`${API}/api/body-measurements`, {
+    ...auth(user),
+    data: { measuredOn, ...values },
+  })
+  if (response.status() !== 201) {
+    throw new Error(`create measurement failed: ${response.status()}`)
+  }
+  return (await response.json()).id
+}
+
+export async function listMeasurementsViaApi(
+  request: APIRequestContext,
+  user: ApiUser,
+): Promise<{
+  targetWeightKg: number | null
+  entries: { id: string; measuredOn: string; weightKg: number | null; waistCm: number | null }[]
+}> {
+  const response = await request.get(`${API}/api/body-measurements`, auth(user))
+  return response.json()
+}

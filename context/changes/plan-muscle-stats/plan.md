@@ -348,9 +348,9 @@ None. No schema or API changes.
 
 #### Automated
 
-- [x] 5.1 New e2e passes: `npm run test:e2e -- plan-muscle-stats.spec.ts`
-- [x] 5.2 Full e2e suite passes: `npm run test:e2e`
-- [x] 5.3 Backend unaffected: `./mvnw test`
+- [x] 5.1 New e2e passes: `npm run test:e2e -- plan-muscle-stats.spec.ts` — c22a9d1
+- [x] 5.2 Full e2e suite passes: `npm run test:e2e` — c22a9d1
+- [x] 5.3 Backend unaffected: `./mvnw test` — c22a9d1
 
 #### Manual
 

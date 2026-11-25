@@ -1,7 +1,7 @@
 ---
 change_id: plan-muscle-stats
 title: Muscle group statistics for training plans
-status: implementing
+status: implemented
 created: 2026-11-25
 updated: 2026-11-25
 archived_at: null

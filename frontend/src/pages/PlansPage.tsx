@@ -4,13 +4,16 @@ import { Link } from 'react-router'
 import { deletePlan, getExercises, getPlan, listPlans } from '../api/client'
 import type { Exercise, Plan, PlanSummary } from '../api/client'
 import PlanMuscleStats from '../components/PlanMuscleStats'
+import { planMuscleStats } from '../utils/planMuscleStats'
+import type { PlanStatsEntry } from '../utils/planMuscleStats'
 import '../styles/page.css'
 import '../styles/workout.css'
 import '../styles/plans.css'
 import { translateError } from '../utils/errors'
 import type { ErrorInfo } from '../utils/errors'
 
-type PlanDetail = { status: 'loading' | 'error' | 'ready'; plan?: Plan }
+// `entries` is built once per loaded plan so the prop identity handed to PlanMuscleStats stays stable across renders.
+type PlanDetail = { status: 'loading' | 'error' | 'ready'; plan?: Plan; entries?: PlanStatsEntry[] }
 
 export default function PlansPage() {
   const { t } = useTranslation()
@@ -76,7 +79,11 @@ export default function PlansPage() {
       .then((plan) => {
         // Skipped if the plan was deleted (entry removed) or the page unmounted meanwhile.
         if (!mountedRef.current || detailsRef.current.get(id)?.status !== 'loading') return
-        detailsRef.current.set(id, { status: 'ready', plan })
+        detailsRef.current.set(id, {
+          status: 'ready',
+          plan,
+          entries: plan.exercises.map((e) => ({ exerciseId: e.exerciseId, sets: e.sets })),
+        })
         commitDetails()
       })
       .catch(() => {
@@ -137,12 +144,25 @@ export default function PlansPage() {
     () =>
       selectedPlans.flatMap((p) => {
         const detail = details.get(p.id)
-        return detail?.status === 'ready' && detail.plan
-          ? detail.plan.exercises.map((e) => ({ exerciseId: e.exerciseId, sets: e.sets }))
+        return detail?.status === 'ready' && detail.entries
+          ? detail.entries
           : []
       }),
     [selectedPlans, details],
   )
+
+  // Short text for the polite live region; errors are announced by their own role="alert" lines instead.
+  const combinedReady = selectedPlans.length >= 2 && failedPlans.length === 0 && !exercisesFailed && !combinedLoading
+  const combinedTotal = useMemo(
+    () => (combinedReady ? planMuscleStats(combinedEntries, exerciseMap).totalSets : 0),
+    [combinedReady, combinedEntries, exerciseMap],
+  )
+  const liveMessage =
+    selectedPlans.length === 1
+      ? t('plans.muscles.selectHint')
+      : combinedReady
+        ? `${t('plans.muscles.combinedHeading')}: ${t('plans.muscles.total', { count: combinedTotal })}`
+        : ''
 
   async function handleDelete(id: string) {
     setError(null)
@@ -169,6 +189,10 @@ export default function PlansPage() {
           </Link>
         </div>
         {error && <p className="error-text">{translateError(error.err, error.key)}</p>}
+        {/* Persistent polite region: announces the hint or the combined outcome without re-reading the whole panel. */}
+        <p className="visually-hidden" aria-live="polite">
+          {liveMessage}
+        </p>
         {selectedPlans.length === 1 && <p className="page-subtext">{t('plans.muscles.selectHint')}</p>}
         {selectedPlans.length >= 2 && (
           <div className="plan-combined">
@@ -176,13 +200,17 @@ export default function PlansPage() {
               {t('plans.muscles.combinedPlans', { names: selectedPlans.map((p) => p.name).join(', ') })}
             </p>
             {failedPlans.length > 0 ? (
-              <p className="error-text">
+              <p className="error-text" role="alert">
                 {t('plans.muscles.combinedFailed', { names: failedPlans.map((p) => p.name).join(', ') })}
               </p>
             ) : exercisesFailed ? (
-              <p className="error-text">{t('plans.muscles.loadFailed')}</p>
+              <p className="error-text" role="alert">
+                {t('plans.muscles.loadFailed')}
+              </p>
             ) : combinedLoading ? (
-              <p className="page-subtext">{t('plans.muscles.loading')}</p>
+              <p className="page-subtext" role="status">
+                {t('plans.muscles.loading')}
+              </p>
             ) : (
               <PlanMuscleStats
                 entries={combinedEntries}
@@ -204,13 +232,16 @@ export default function PlansPage() {
               const detail = details.get(plan.id)
               return (
                 <li key={plan.id} className="plan-item">
-                  <input
-                    type="checkbox"
-                    className="plan-item-select"
-                    aria-label={t('plans.muscles.selectPlan', { name: plan.name })}
-                    checked={selectedIds.has(plan.id)}
-                    onChange={() => toggleSelected(plan.id)}
-                  />
+                  {/* The label only enlarges the touch target (padding offset by a negative margin in CSS). */}
+                  <label className="plan-item-select-hit">
+                    <input
+                      type="checkbox"
+                      className="plan-item-select"
+                      aria-label={t('plans.muscles.selectPlan', { name: plan.name })}
+                      checked={selectedIds.has(plan.id)}
+                      onChange={() => toggleSelected(plan.id)}
+                    />
+                  </label>
                   <div className="plan-item-info">
                     <span className="plan-item-name">{plan.name}</span>
                     <span>
@@ -242,9 +273,9 @@ export default function PlansPage() {
                         type="button"
                         className="btn-secondary plan-muscles-toggle"
                         aria-expanded={expanded}
-                        aria-controls={`plan-muscles-${plan.id}`}
-                        aria-label={expanded ? t('plans.muscles.hide') : t('plans.muscles.show')}
-                        title={expanded ? t('plans.muscles.hide') : t('plans.muscles.show')}
+                        aria-controls={expanded ? `plan-muscles-${plan.id}` : undefined}
+                        aria-label={t('plans.muscles.toggle', { name: plan.name })}
+                        title={t('plans.muscles.toggle', { name: plan.name })}
                         onClick={() => toggleExpanded(plan.id)}
                       >
                         <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true" focusable="false">
@@ -266,12 +297,16 @@ export default function PlansPage() {
                   {expanded && (
                     <div className="plan-item-muscles" id={`plan-muscles-${plan.id}`}>
                       {detail?.status === 'error' || exercisesFailed ? (
-                        <p className="error-text">{t('plans.muscles.loadFailed')}</p>
-                      ) : detail?.status !== 'ready' || !detail.plan || exercises === null ? (
-                        <p className="page-subtext">{t('plans.muscles.loading')}</p>
+                        <p className="error-text" role="alert">
+                          {t('plans.muscles.loadFailed')}
+                        </p>
+                      ) : detail?.status !== 'ready' || !detail.entries || exercises === null ? (
+                        <p className="page-subtext" role="status">
+                          {t('plans.muscles.loading')}
+                        </p>
                       ) : (
                         <PlanMuscleStats
-                          entries={detail.plan.exercises.map((e) => ({ exerciseId: e.exerciseId, sets: e.sets }))}
+                          entries={detail.entries}
                           exercises={exerciseMap}
                           idPrefix={`plan-${plan.id}`}
                         />

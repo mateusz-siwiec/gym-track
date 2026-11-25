@@ -67,6 +67,38 @@ describe('planMuscleStats', () => {
     expect(stats.groups.get('MID_CHEST')?.sets).toBe(0)
   })
 
+  it('counts a parent as both primary and secondary when a secondary group shares the primary parent', () => {
+    // Mirrors DashboardService: the parent counts the primary once and (separately) the secondary once.
+    const incline = new Map([
+      ['incline', { primaryMuscleGroup: 'UPPER_CHEST', secondaryMuscleGroups: ['MID_CHEST'] }],
+    ])
+    const stats = planMuscleStats([{ exerciseId: 'incline', sets: 3 }], incline)
+    expect(stats.groups.get('UPPER_CHEST')).toEqual({ sets: 3, secondarySets: 0 })
+    expect(stats.groups.get('MID_CHEST')).toEqual({ sets: 0, secondarySets: 3 })
+    expect(stats.parents.get('CHEST')).toEqual({ sets: 3, secondarySets: 3 })
+    expect(stats.totalSets).toBe(3)
+  })
+
+  it('counts an exercise with an unknown primary group only toward the total', () => {
+    const odd = new Map([['odd', { primaryMuscleGroup: 'NOT_A_GROUP', secondaryMuscleGroups: ['TRICEPS'] }]])
+    const stats = planMuscleStats([{ exerciseId: 'odd', sets: 2 }], odd)
+    expect(stats.totalSets).toBe(2)
+    for (const counts of stats.groups.values()) expect(counts.sets).toBe(0)
+    expect(stats.groups.get('TRICEPS')).toEqual({ sets: 0, secondarySets: 2 })
+  })
+
+  it('skips negative set counts', () => {
+    const stats = planMuscleStats(
+      [
+        { exerciseId: 'bench', sets: -2 },
+        { exerciseId: 'bench', sets: 1 },
+      ],
+      exercises,
+    )
+    expect(stats.totalSets).toBe(1)
+    expect(stats.groups.get('MID_CHEST')).toEqual({ sets: 1, secondarySets: 0 })
+  })
+
   it('gives all zeros for empty input', () => {
     const stats = planMuscleStats([], exercises)
     expect(stats.totalSets).toBe(0)

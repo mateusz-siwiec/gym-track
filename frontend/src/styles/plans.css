@@ -156,6 +156,15 @@
   margin-top: 1.5rem;
 }
 
+/* ~44px hit area around the 24px checkbox; the negative margin keeps the row layout unchanged. */
+.plan-item-select-hit {
+  display: inline-flex;
+  flex: 0 0 auto;
+  padding: 0.625rem;
+  margin: -0.625rem;
+  cursor: pointer;
+}
+
 .plan-item-select {
   flex: 0 0 auto;
   width: 1.5rem;
@@ -187,6 +196,13 @@
 .plan-list--selectable .plan-item-actions {
   flex-wrap: nowrap;
   flex-shrink: 0;
+}
+
+/* Slimmer buttons so checkbox, name and the three actions fit on one line in the 560px card. Must come before the
+   phone media query below so its smaller value overrides this one at the same specificity. */
+.plan-list--selectable .plan-item-actions .btn-secondary,
+.plan-list--selectable .plan-item-actions .btn-danger {
+  padding-inline: 0.875rem;
 }
 
 /* Icon-only chevron (the label is the aria-label/title) so the whole row stays on one line, phone included. */
@@ -231,12 +247,6 @@
   .plan-muscles-toggle svg {
     transition: none;
   }
-}
-
-/* Slimmer buttons so checkbox, name and the three actions fit on one line in the 560px card. */
-.plan-list--selectable .plan-item-actions .btn-secondary,
-.plan-list--selectable .plan-item-actions .btn-danger {
-  padding-inline: 0.875rem;
 }
 
 .plan-item-muscles {

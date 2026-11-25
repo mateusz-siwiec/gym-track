@@ -187,8 +187,7 @@
       "combinedPlans": "Included plans: {{names}}",
       "selectHint": "Select 2 or more plans to see their combined muscle breakdown.",
       "selectPlan": "Select {{name}} for combined muscles",
-      "show": "Show muscles",
-      "hide": "Hide muscles",
+      "toggle": "Muscles of {{name}}",
       "combinedFailed": "Could not load: {{names}}"
     }
   },

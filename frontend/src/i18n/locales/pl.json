@@ -199,8 +199,7 @@
       "combinedPlans": "Uwzględnione plany: {{names}}",
       "selectHint": "Zaznacz co najmniej 2 plany, aby zobaczyć łączne zestawienie mięśni.",
       "selectPlan": "Wybierz plan {{name}} do łącznego zestawienia mięśni",
-      "show": "Pokaż mięśnie",
-      "hide": "Ukryj mięśnie",
+      "toggle": "Mięśnie planu {{name}}",
       "combinedFailed": "Nie udało się wczytać: {{names}}"
     }
   },

@@ -185,6 +185,22 @@
       "moveUp": "W górę",
       "moveDown": "W dół",
       "remove": "Usuń"
+    },
+    "muscles": {
+      "title": "Zaangażowane mięśnie",
+      "empty": "Dodaj ćwiczenia z seriami, aby zobaczyć, które mięśnie angażuje ten plan.",
+      "total_one": "Łącznie {{count}} zaplanowana seria",
+      "total_few": "Łącznie {{count}} zaplanowane serie",
+      "total_many": "Łącznie {{count}} zaplanowanych serii",
+      "total_other": "Łącznie {{count}} zaplanowanej serii",
+      "loading": "Wczytywanie planu…",
+      "loadFailed": "Nie udało się wczytać mięśni planu",
+      "combinedHeading": "Łączne zaangażowanie mięśni",
+      "combinedPlans": "Uwzględnione plany: {{names}}",
+      "selectHint": "Zaznacz co najmniej 2 plany, aby zobaczyć łączne zestawienie mięśni.",
+      "selectPlan": "Wybierz plan {{name}} do łącznego zestawienia mięśni",
+      "toggle": "Mięśnie planu {{name}}",
+      "combinedFailed": "Nie udało się wczytać: {{names}}"
     }
   },
   "exercises": {

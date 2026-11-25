@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router'
 import { createPlan, getExercises, getPlan, updatePlan } from '../api/client'
 import type { Exercise, Measure, PlanEntry } from '../api/client'
 import ExercisePicker from '../components/ExercisePicker'
+import PlanMuscleStats from '../components/PlanMuscleStats'
 import PlanExerciseList from '../components/PlanExerciseList'
 import type { PlanEditorEntry, PlanTargetField } from '../components/PlanExerciseList'
 import '../styles/page.css'
@@ -119,6 +120,27 @@ function PlanEditor() {
     setEntries((list) => list.map((e) => (e.key === key ? { ...e, [field]: value } : e)))
   }
 
+  const exerciseMap = useMemo(
+    () =>
+      new Map(
+        exercises.map((x) => [
+          x.id,
+          { primaryMuscleGroup: x.primaryMuscleGroup, secondaryMuscleGroups: x.secondaryMuscleGroups },
+        ]),
+      ),
+    [exercises],
+  )
+
+  // Half-typed (empty or non-integer) set counts are ignored so the panel never counts a partial value.
+  const statsEntries = useMemo(
+    () =>
+      entries.flatMap((e) => {
+        const sets = toTarget(e.sets)
+        return sets == null ? [] : [{ exerciseId: e.exerciseId, sets }]
+      }),
+    [entries],
+  )
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setError(null)
@@ -210,6 +232,14 @@ function PlanEditor() {
               onTargetChange={handleTargetChange}
             />
           </section>
+          {entries.length > 0 && (
+            <PlanMuscleStats
+              entries={statsEntries}
+              exercises={exerciseMap}
+              idPrefix="plan-editor"
+              heading={t('plans.muscles.title')}
+            />
+          )}
           <div className="plan-editor-footer">
             <button type="submit" className="btn-primary" disabled={!canSave}>
               {saving ? t('common.saving') : t('common.save')}

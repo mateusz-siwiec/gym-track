@@ -16,7 +16,7 @@ transparent, rule-based suggestions for what to do next, with no black box: ever
 | --- | --- |
 | Access | Register and log in; everyone sees only their own data |
 | Exercises | Browse a seeded catalog (tagged by muscle group); add, rename and delete custom exercises; star favourites and search by name |
-| Plans | Create, edit, reorder and delete training plans (ordered exercises with target sets × reps) |
+| Plans | Create, edit, reorder and delete training plans (ordered exercises with target sets × reps); see the muscles each plan works (optionally with secondary muscles) and a combined breakdown across ticked plans |
 | Workouts | Start a session (free-form or from a plan), log and delete sets, end it; guided navigation with skip/return and a rest timer; delete a whole workout from its History page (with confirmation); mark a set as taken "to failure" when logging it (shown in the active workout, in History and in the previous-workout hint) |
 | Insight | Progression chart per exercise, history of past workouts, dashboard with totals, 12-week volume, streak and recent records, sets per muscle group |
 | Rules | Weight-increase recommendation, substitute suggestions, personal-record flag (see below) |

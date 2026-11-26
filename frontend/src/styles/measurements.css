@@ -1,0 +1,181 @@
+.measurements-card {
+  max-width: 640px;
+}
+
+.measurements-card h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.measurements-card section {
+  margin-top: 2rem;
+}
+
+/* Latest values */
+.measurement-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.75rem;
+}
+
+.measurement-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  padding: 0.75rem;
+}
+
+.measurement-card-date,
+.measurement-card-change {
+  font-size: 0.875rem;
+  color: var(--text);
+}
+
+.measurement-card-change {
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+/* Target weight */
+.measurement-target-progress {
+  font-weight: 500;
+  color: var(--text-h);
+  margin-bottom: 0.75rem;
+}
+
+.measurement-target-form {
+  margin-top: 0.75rem;
+}
+
+/* Form */
+.measurement-form {
+  padding: 1rem;
+}
+
+.measurement-form h2 {
+  margin-bottom: 0.25rem;
+}
+
+.measurement-group {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.measurement-group legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.measurement-group-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0 0.75rem;
+}
+
+.measurement-field {
+  min-width: 0;
+}
+
+.measurement-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.375rem;
+}
+
+.measurement-label-row label {
+  margin-bottom: 0;
+}
+
+.measurement-field-error {
+  margin: 0.25rem 0 0;
+}
+
+.measurement-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* History */
+.measurement-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.measurement-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.measurement-item[data-editing] {
+  background: var(--accent-bg);
+}
+
+.measurement-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex: 1 1 14rem;
+}
+
+.measurement-item-date {
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.measurement-values {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.25rem 1.5rem;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--text);
+}
+
+/* Name on the left, number right-aligned, so values line up in columns. */
+.measurement-values li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-bottom: 0.125rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.measurement-values-number {
+  color: var(--text-h);
+  font-weight: 500;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.measurement-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.measurement-confirm-text {
+  font-size: 0.875rem;
+  color: var(--text-h);
+}

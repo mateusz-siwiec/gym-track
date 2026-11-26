@@ -4,6 +4,7 @@
     "workout": "Workout",
     "history": "History",
     "plans": "Plans",
+    "measurements": "Measurements",
     "exercises": "Exercises",
     "newExercise": "New exercise",
     "logout": "Log out",
@@ -414,6 +415,176 @@
     "ABS": "Abs",
     "OBLIQUES": "Obliques"
   },
+  "measurements": {
+    "title": "Body measurements",
+    "subtitle": "Track your weight and body measurements over time.",
+    "loading": "Loading measurements…",
+    "loadFailed": "Could not load your measurements.",
+    "saveFailed": "Could not save the measurement.",
+    "deleteFailed": "Could not delete the measurement.",
+    "empty": "No measurements yet. Add your first entry to start tracking.",
+    "fields": {
+      "date": "Date",
+      "weightKg": "Weight",
+      "waistCm": "Waist",
+      "chestCm": "Chest",
+      "hipsCm": "Hips",
+      "armLeftCm": "Left arm",
+      "armRightCm": "Right arm",
+      "thighLeftCm": "Left thigh",
+      "thighRightCm": "Right thigh",
+      "calfLeftCm": "Left calf",
+      "calfRightCm": "Right calf"
+    },
+    "areas": {
+      "weight": "Weight",
+      "waist": "Waist",
+      "chest": "Chest",
+      "hips": "Hips",
+      "arm": "Arm",
+      "thigh": "Thigh",
+      "calf": "Calf"
+    },
+    "sides": {
+      "left": "Left",
+      "right": "Right"
+    },
+    "units": {
+      "kg": "kg",
+      "cm": "cm"
+    },
+    "form": {
+      "title": "Add measurement",
+      "editTitle": "Edit measurement",
+      "hint": "Fill in only what you measured; every field except the date is optional.",
+      "add": "Add measurement",
+      "save": "Save changes",
+      "cancel": "Cancel",
+      "placeholder": "e.g. 72.5",
+      "atLeastOne": "Enter at least one measurement.",
+      "invalidNumber": "{{field}}: enter a number.",
+      "outOfRange": "{{field}} must be between {{min}} and {{max}} {{unit}}.",
+      "tooManyDecimals_one": "{{field}} can have at most {{count}} decimal place.",
+      "tooManyDecimals_other": "{{field}} can have at most {{count}} decimal places.",
+      "dateRequired": "Choose a date.",
+      "dateTooEarly": "The date cannot be before 1 January 1950.",
+      "dateInFuture": "The date cannot be in the future.",
+      "groups": {
+        "trunk": "Trunk",
+        "limbs": "Limbs"
+      }
+    },
+    "tips": {
+      "show": "How to measure",
+      "hide": "Hide tips",
+      "weight": {
+        "title": "Weighing yourself",
+        "steps": [
+          "Weigh yourself at the same time of day, ideally in the morning.",
+          "Do it after using the toilet and before eating or drinking.",
+          "Wear little or no clothing and stand still on a flat, hard floor."
+        ]
+      },
+      "waist": {
+        "title": "Measuring your waist",
+        "steps": [
+          "Stand up straight and relax your stomach.",
+          "Place the tape around the narrowest part of your torso, about at navel height.",
+          "Keep the tape level and snug but not tight, and read it after a normal exhale."
+        ]
+      },
+      "chest": {
+        "title": "Measuring your chest",
+        "steps": [
+          "Stand up straight with your arms relaxed at your sides.",
+          "Wrap the tape around the fullest part of your chest, across the nipples.",
+          "Keep the tape level around your back and read it after a normal exhale."
+        ]
+      },
+      "hips": {
+        "title": "Measuring your hips",
+        "steps": [
+          "Stand with your feet together and your weight evenly spread.",
+          "Wrap the tape around the widest part of your hips and buttocks.",
+          "Keep the tape level all the way around and snug but not tight."
+        ]
+      },
+      "arm": {
+        "title": "Measuring your arm",
+        "steps": [
+          "Let your arm hang relaxed at your side, not flexed.",
+          "Wrap the tape around the middle of your upper arm, halfway between shoulder and elbow.",
+          "Measure both arms the same way and at the same spot each time."
+        ]
+      },
+      "thigh": {
+        "title": "Measuring your thigh",
+        "steps": [
+          "Stand with your weight evenly on both legs.",
+          "Wrap the tape around the thickest part of your upper thigh, just below the buttock.",
+          "Keep the tape level and snug but not tight, and measure the same spot each time."
+        ]
+      },
+      "calf": {
+        "title": "Measuring your calf",
+        "steps": [
+          "Stand with your weight evenly on both legs.",
+          "Wrap the tape around the widest part of your lower leg.",
+          "Keep the tape level and snug but not tight, and measure the same spot each time."
+        ]
+      }
+    },
+    "latest": {
+      "title": "Latest values",
+      "noValue": "No data",
+      "asOf": "as of {{date}}",
+      "firstEntry": "First measurement"
+    },
+    "delta": {
+      "up": "Up {{value}} {{unit}} since {{date}}",
+      "down": "Down {{value}} {{unit}} since {{date}}",
+      "same": "No change since {{date}}"
+    },
+    "history": {
+      "title": "History",
+      "count_one": "{{count}} entry",
+      "count_other": "{{count}} entries",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Delete this entry?",
+      "confirmYes": "Yes, delete",
+      "confirmNo": "Keep",
+      "empty": "No entries yet."
+    },
+    "chart": {
+      "title": "Progress",
+      "area": "Measurement",
+      "window": "Time range",
+      "windowDays": "{{days}} days",
+      "windowAll": "All",
+      "noData": "No data in this time range.",
+      "target": "Target weight",
+      "left": "Left",
+      "right": "Right",
+      "summary": "{{area}} chart, {{range}}. Latest: {{latest}}."
+    },
+    "target": {
+      "title": "Target weight",
+      "label": "Target weight (kg)",
+      "set": "Set target",
+      "update": "Update target",
+      "clear": "Remove target",
+      "none": "No target weight set.",
+      "current": "Target: {{value}} kg",
+      "remaining": "{{value}} kg to go",
+      "reached": "Target reached",
+      "above": "{{value}} kg above target",
+      "below": "{{value}} kg below target",
+      "noWeight": "Log a weight to see your progress toward the target.",
+      "saveFailed": "Could not save the target weight.",
+      "invalid": "Enter a target weight from 20 to 500 kg."
+    }
+  },
   "errors": {
     "REQUEST_FAILED": "Request failed (status {{status}}).",
     "EXERCISE_NOT_FOUND": "Exercise not found.",
@@ -430,6 +601,8 @@
     "WORKOUT_ENDED": "This workout has already ended.",
     "INVALID_DASHBOARD_WINDOW": "Unsupported time range.",
     "INVALID_WEEKLY_GOAL": "The weekly goal must be a whole number from 1 to 14.",
+    "BODY_MEASUREMENT_NOT_FOUND": "Measurement entry not found.",
+    "INVALID_TARGET_WEIGHT": "The target weight must be a number from 20 to 500 kg.",
     "INVALID_HISTORY_PAGE": "Invalid page number.",
     "INVALID_HISTORY_SIZE": "Invalid page size.",
     "INVALID_HISTORY_FILTER": "These filters cannot be combined.",

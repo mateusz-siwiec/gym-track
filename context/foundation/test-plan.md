@@ -177,6 +177,46 @@ mirroring the rules of `DashboardService.muscleGroupStats`; if the two drift apa
 | `frontend/src/utils/planMuscleStats.test.ts` | Frontend unit | Primary sets count once under the exercise's primary group; secondary groups count in full; a parent counts once when two of its groups are secondary; a secondary equal to the primary and unknown groups are ignored |
 | `e2e/plan-muscle-stats.spec.ts` | E2E | The editor panel shows the parent rows and updates when the sets field changes; a plans-list row expands to the right counts; two ticked plans show the combined sums and both names, one ticked plan shows the hint; the secondary checkbox adds "(+n)"; at 390 px the checkbox, name and actions stay on one line; another user's plans never appear |
 
+### R15. One user sees or changes another user's body measurements or target weight (guardrail)
+
+**Impact:** high. Weight and body measurements are personal data; the same isolation guarantee as R1 applies to them.
+
+| Test | Level | Covers |
+| --- | --- | --- |
+| `e2e/body-measurements.spec.ts` ("another user's measurements and target are never visible or reachable") | E2E | A second user sees an empty page and no target, and guessed PUT and DELETE on the owner's entry return 404 while the entry and target survive |
+| `BodyMeasurementControllerTest.anotherUsersEntryIsNotFoundAndNeverListed`, `routesWithoutTokenReturnUnauthorized` | Backend | Entries are scoped to the owner; every route rejects requests without a token |
+| `BodyMeasurementSchemaTest.unknownUserIsRejected` | Backend | The DB refuses entries for a non-existent user |
+
+### R16. A measurement is stored or shown wrongly (decimals, locale, ranges)
+
+**Impact:** medium. Polish users type `72,5`; a misparsed or mis-rounded value silently corrupts the trend and the change shown on the latest cards.
+
+| Test | Level | Covers |
+| --- | --- | --- |
+| `frontend/src/utils/bodyMeasurements.test.ts` | Frontend unit | Dot and comma decimals parse, junk and negatives are rejected; weight 20 to 500 kg with 2 decimals, tape values 5 to 300 cm with 1; latest value, change from the previous entry and chart series from sparse entries |
+| `e2e/body-measurements.spec.ts` (invalid input, Polish, latest card, edit, chart and target tests) | E2E | Empty entry, out-of-range, non-numeric and too-many-decimals errors; `72,5` saves as 72.5 and is shown as `72,5 kg` in Polish; the exact latest value and `−1.5 kg` change; editing can clear a field; the chart window and selector; target set, progress and clear |
+| `BodyMeasurementControllerTest.weightBoundaries`, `everyTapeFieldHonoursItsBoundaries`, `requestWithoutAnyValueIsRejected`, `putReplacesEntryAndClearsOmittedField`, `putCannotClearEveryValue`, `targetWeightBoundariesAndInvalidValues` | Backend | The API enforces the same ranges, requires at least one value and treats PUT as a full replacement |
+| `BodyMeasurementSchemaTest` | Backend | DB check constraints for the ranges, at least one value and the target weight range |
+
+### R17. The measurement date is off by a day, or accepts an impossible date
+
+**Impact:** low to medium. The date is a calendar day with no time; a timezone shift would file an entry under the wrong day and break "change since".
+
+| Test | Level | Covers |
+| --- | --- | --- |
+| `e2e/body-measurements.spec.ts` (log and invalid input tests) | E2E | The date defaults to the local today and the entry is filed under it; tomorrow is refused in the form |
+| `BodyMeasurementControllerTest.dateOneDayAheadIsAcceptedAndTwoDaysAheadRejected`, `dateBefore1950IsRejected`, `missingOrMalformedDateIsRejected` | Backend | One day of slack for timezones ahead of the server, nothing further in the future, nothing before 1950 |
+| `frontend/src/utils/bodyMeasurements.test.ts` (`filterWindow`) | Frontend unit | The chart window includes its boundary day and crosses year boundaries |
+
+### R18. The tooltip refactor breaks the technique tips, or the measurement tips are unreachable
+
+**Impact:** medium. The generic `InfoTooltip` now serves the exercise technique tips and the how-to-measure tips; a regression would hit both, and keyboard and phone users depend on it.
+
+| Test | Level | Covers |
+| --- | --- | --- |
+| `e2e/technique-tooltip.spec.ts` | E2E | The exercise tooltip still opens, follows the selected exercise, keeps the page height, scrolls inside itself on a short viewport and toggles on tap |
+| `e2e/body-measurements.spec.ts` (tooltip and phone width tests) | E2E | The measurement tips open by keyboard focus, close on Escape with focus back on the button, show their steps in English and Polish, and an open panel adds no horizontal scroll at 375 px |
+
 ## Not covered by automated tests (known gaps)
 
 - **Logging timed sets through the browser beyond one plank flow.** The e2e specs cover a plank with and without weight; the exercise form's measure and weight-mode controls are exercised only through the edit-lock path, not on create.

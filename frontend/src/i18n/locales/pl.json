@@ -4,6 +4,7 @@
     "workout": "Trening",
     "history": "Historia",
     "plans": "Plany",
+    "measurements": "Pomiary",
     "exercises": "Ćwiczenia",
     "newExercise": "Nowe ćwiczenie",
     "logout": "Wyloguj",
@@ -440,6 +441,180 @@
     "ABS": "Brzuch",
     "OBLIQUES": "Mięśnie skośne"
   },
+  "measurements": {
+    "title": "Pomiary ciała",
+    "subtitle": "Śledź swoją wagę i wymiary ciała w czasie.",
+    "loading": "Wczytywanie pomiarów…",
+    "loadFailed": "Nie udało się wczytać pomiarów.",
+    "saveFailed": "Nie udało się zapisać pomiaru.",
+    "deleteFailed": "Nie udało się usunąć pomiaru.",
+    "empty": "Nie ma jeszcze żadnych pomiarów. Dodaj pierwszy wpis, aby zacząć śledzić postępy.",
+    "fields": {
+      "date": "Data",
+      "weightKg": "Waga",
+      "waistCm": "Talia",
+      "chestCm": "Klatka piersiowa",
+      "hipsCm": "Biodra",
+      "armLeftCm": "Ramię lewe",
+      "armRightCm": "Ramię prawe",
+      "thighLeftCm": "Udo lewe",
+      "thighRightCm": "Udo prawe",
+      "calfLeftCm": "Łydka lewa",
+      "calfRightCm": "Łydka prawa"
+    },
+    "areas": {
+      "weight": "Waga",
+      "waist": "Talia",
+      "chest": "Klatka piersiowa",
+      "hips": "Biodra",
+      "arm": "Ramię",
+      "thigh": "Udo",
+      "calf": "Łydka"
+    },
+    "sides": {
+      "left": "Lewe",
+      "right": "Prawe"
+    },
+    "units": {
+      "kg": "kg",
+      "cm": "cm"
+    },
+    "form": {
+      "title": "Dodaj pomiar",
+      "editTitle": "Edytuj pomiar",
+      "hint": "Uzupełnij tylko to, co zmierzyłeś; każde pole poza datą jest opcjonalne.",
+      "add": "Dodaj pomiar",
+      "save": "Zapisz zmiany",
+      "cancel": "Anuluj",
+      "placeholder": "np. 72,5",
+      "atLeastOne": "Wpisz co najmniej jeden pomiar.",
+      "invalidNumber": "{{field}}: wpisz liczbę.",
+      "outOfRange": "{{field}} musi mieścić się w przedziale od {{min}} do {{max}} {{unit}}.",
+      "tooManyDecimals_one": "{{field}} może mieć co najwyżej {{count}} miejsce po przecinku.",
+      "tooManyDecimals_few": "{{field}} może mieć co najwyżej {{count}} miejsca po przecinku.",
+      "tooManyDecimals_many": "{{field}} może mieć co najwyżej {{count}} miejsc po przecinku.",
+      "tooManyDecimals_other": "{{field}} może mieć co najwyżej {{count}} miejsca po przecinku.",
+      "dateRequired": "Wybierz datę.",
+      "dateTooEarly": "Data nie może być wcześniejsza niż 1 stycznia 1950.",
+      "dateInFuture": "Data nie może być z przyszłości.",
+      "groups": {
+        "trunk": "Tułów",
+        "limbs": "Kończyny"
+      }
+    },
+    "tips": {
+      "show": "Jak mierzyć",
+      "hide": "Ukryj wskazówki",
+      "weight": {
+        "title": "Jak się ważyć",
+        "steps": [
+          "Waż się o tej samej porze dnia, najlepiej rano.",
+          "Zrób to po wizycie w toalecie, a przed jedzeniem i piciem.",
+          "Miej na sobie jak najmniej ubrań i stój nieruchomo na płaskiej, twardej podłodze."
+        ]
+      },
+      "waist": {
+        "title": "Jak zmierzyć talię",
+        "steps": [
+          "Stań prosto i rozluźnij brzuch.",
+          "Owiń taśmę wokół najwęższego miejsca tułowia, mniej więcej na wysokości pępka.",
+          "Trzymaj taśmę poziomo, przylegającą, ale nie ściskającą, i odczytaj wynik po zwykłym wydechu."
+        ]
+      },
+      "chest": {
+        "title": "Jak zmierzyć klatkę piersiową",
+        "steps": [
+          "Stań prosto, ręce opuść swobodnie wzdłuż ciała.",
+          "Owiń taśmę wokół najszerszego miejsca klatki piersiowej, na wysokości sutków.",
+          "Prowadź taśmę poziomo także na plecach i odczytaj wynik po zwykłym wydechu."
+        ]
+      },
+      "hips": {
+        "title": "Jak zmierzyć biodra",
+        "steps": [
+          "Stań ze stopami razem i równomiernie rozłożonym ciężarem ciała.",
+          "Owiń taśmę wokół najszerszego miejsca bioder i pośladków.",
+          "Trzymaj taśmę poziomo na całym obwodzie, przylegającą, ale nie ściskającą."
+        ]
+      },
+      "arm": {
+        "title": "Jak zmierzyć ramię",
+        "steps": [
+          "Opuść rękę swobodnie wzdłuż ciała, bez napinania mięśnia.",
+          "Owiń taśmę wokół środka ramienia, w połowie odległości między barkiem a łokciem.",
+          "Obie ręce mierz tak samo i za każdym razem w tym samym miejscu."
+        ]
+      },
+      "thigh": {
+        "title": "Jak zmierzyć udo",
+        "steps": [
+          "Stań, rozkładając ciężar ciała równomiernie na obie nogi.",
+          "Owiń taśmę wokół najgrubszego miejsca uda, tuż pod pośladkiem.",
+          "Trzymaj taśmę poziomo, przylegającą, ale nie ściskającą, i mierz za każdym razem w tym samym miejscu."
+        ]
+      },
+      "calf": {
+        "title": "Jak zmierzyć łydkę",
+        "steps": [
+          "Stań, rozkładając ciężar ciała równomiernie na obie nogi.",
+          "Owiń taśmę wokół najszerszego miejsca podudzia.",
+          "Trzymaj taśmę poziomo, przylegającą, ale nie ściskającą, i mierz za każdym razem w tym samym miejscu."
+        ]
+      }
+    },
+    "latest": {
+      "title": "Ostatnie wartości",
+      "noValue": "Brak danych",
+      "asOf": "z dnia {{date}}",
+      "firstEntry": "Pierwszy pomiar"
+    },
+    "delta": {
+      "up": "Więcej o {{value}} {{unit}} niż {{date}}",
+      "down": "Mniej o {{value}} {{unit}} niż {{date}}",
+      "same": "Bez zmian od {{date}}"
+    },
+    "history": {
+      "title": "Historia",
+      "count_one": "{{count}} wpis",
+      "count_few": "{{count}} wpisy",
+      "count_many": "{{count}} wpisów",
+      "count_other": "{{count}} wpisu",
+      "edit": "Edytuj",
+      "delete": "Usuń",
+      "confirmDelete": "Usunąć ten wpis?",
+      "confirmYes": "Tak, usuń",
+      "confirmNo": "Zachowaj",
+      "empty": "Nie ma jeszcze wpisów."
+    },
+    "chart": {
+      "title": "Postępy",
+      "area": "Pomiar",
+      "window": "Zakres czasu",
+      "windowDays": "{{days}} dni",
+      "windowAll": "Wszystko",
+      "noData": "Brak danych w tym zakresie czasu.",
+      "target": "Waga docelowa",
+      "left": "Lewe",
+      "right": "Prawe",
+      "summary": "Wykres: {{area}}, {{range}}. Ostatnio: {{latest}}."
+    },
+    "target": {
+      "title": "Waga docelowa",
+      "label": "Waga docelowa (kg)",
+      "set": "Ustaw cel",
+      "update": "Zmień cel",
+      "clear": "Usuń cel",
+      "none": "Nie ustawiono wagi docelowej.",
+      "current": "Cel: {{value}} kg",
+      "remaining": "Zostało {{value}} kg",
+      "reached": "Cel osiągnięty",
+      "above": "{{value}} kg powyżej celu",
+      "below": "{{value}} kg poniżej celu",
+      "noWeight": "Dodaj pomiar wagi, aby zobaczyć postęp w kierunku celu.",
+      "saveFailed": "Nie udało się zapisać wagi docelowej.",
+      "invalid": "Wpisz wagę docelową od 20 do 500 kg."
+    }
+  },
   "errors": {
     "REQUEST_FAILED": "Żądanie nie powiodło się (status {{status}}).",
     "EXERCISE_NOT_FOUND": "Nie znaleziono ćwiczenia.",
@@ -456,6 +631,8 @@
     "WORKOUT_ENDED": "Ten trening został już zakończony.",
     "INVALID_DASHBOARD_WINDOW": "Nieobsługiwany zakres czasu.",
     "INVALID_WEEKLY_GOAL": "Cel tygodniowy musi być liczbą całkowitą od 1 do 14.",
+    "BODY_MEASUREMENT_NOT_FOUND": "Nie znaleziono wpisu pomiarów.",
+    "INVALID_TARGET_WEIGHT": "Waga docelowa musi być liczbą od 20 do 500 kg.",
     "INVALID_HISTORY_PAGE": "Nieprawidłowy numer strony.",
     "INVALID_HISTORY_SIZE": "Nieprawidłowy rozmiar strony.",
     "INVALID_HISTORY_FILTER": "Tych filtrów nie można łączyć.",

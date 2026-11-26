@@ -1,5 +1,6 @@
 package com.example.gymtrack.user;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 import jakarta.persistence.Column;
@@ -28,6 +29,9 @@ public class User {
 	private Instant createdAt;
 
 	private Integer weeklyGoal;
+
+	@Column(precision = 5, scale = 2)
+	private BigDecimal targetWeightKg;
 
 	protected User() {
 	}
@@ -59,6 +63,14 @@ public class User {
 
 	public void setWeeklyGoal(Integer weeklyGoal) {
 		this.weeklyGoal = weeklyGoal;
+	}
+
+	public BigDecimal getTargetWeightKg() {
+		return targetWeightKg;
+	}
+
+	public void setTargetWeightKg(BigDecimal targetWeightKg) {
+		this.targetWeightKg = targetWeightKg;
 	}
 
 }

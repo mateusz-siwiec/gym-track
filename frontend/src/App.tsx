@@ -6,6 +6,7 @@ import MuscleGroupStatsPage from './pages/MuscleGroupStatsPage'
 import WorkoutPage from './pages/WorkoutPage'
 import HistoryPage from './pages/HistoryPage'
 import HistoryDetailPage from './pages/HistoryDetailPage'
+import BodyMeasurementsPage from './pages/BodyMeasurementsPage'
 import PlansPage from './pages/PlansPage'
 import PlanEditorPage from './pages/PlanEditorPage'
 import ExercisesPage from './pages/ExercisesPage'
@@ -81,6 +82,14 @@ function App() {
             element={
               <RequireAuth>
                 <PlanEditorPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/measurements"
+            element={
+              <RequireAuth>
+                <BodyMeasurementsPage />
               </RequireAuth>
             }
           />

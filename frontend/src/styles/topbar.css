@@ -27,6 +27,8 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: border-color 0.15s;
 }
 
